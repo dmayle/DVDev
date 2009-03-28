@@ -1,3 +1,21 @@
+3a39b548fbb53f13d763eb8570f43d37df15a5a7:
+  comment: Opening ticket
+  description: Setup the navbars, and cleanup the url navigation.
+  estimate: 1 Week
+  status: open
+  title: Clean up the html
+543534016613021c46cf19d843ef15e00c488616:
+  description: Get help turning the meritocracy proof of concept into a functioning
+    repoze.what plugin.
+  estimate: ''
+  status: open
+  title: Get help creating a repoze.what plugin for meritocracy
+a36b42ed967e40d8dde931f12a66eae2d30f8c42:
+  comment: Opening ticket
+  description: Give a lightning talk at Pycon about DVDev
+  estimate: 3 Minutes
+  status: open
+  title: Demo DVDev at Pycon
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
