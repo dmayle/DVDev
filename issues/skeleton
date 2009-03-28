@@ -1,0 +1,6 @@
+comment: The current comment on this ticket.
+description: A detailed description of this ticket.
+status: The current status of the ticket.
+estimate: A time estimate for completion
+priority: green, red, or black
+title: A title for the ticket

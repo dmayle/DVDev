@@ -1,0 +1,5 @@
+skeleton:
+  description: A detailed description of this ticket.
+  estimate: A time estimate for completion
+  status: The current status of the ticket.
+  title: A title for the ticket
