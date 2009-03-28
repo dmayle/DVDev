@@ -1,5 +1,6 @@
-comment: Opening ticket
+comment: Updating the slides for more history
 description: Give a lightning talk at Pycon about DVDev
 estimate: 3 Minutes
+priority: green, red, or black
 status: open
 title: Demo DVDev at Pycon
