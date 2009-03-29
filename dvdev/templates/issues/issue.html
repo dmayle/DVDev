@@ -41,13 +41,13 @@
             </ul>
         </li>
     </ul>
-    <form action="${h.url_for(action='edit')}" method="POST">
+    <form action="${url.current(action='edit')}" method="POST">
         <ul>
             <li py:for="key in c.skeleton"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.issue.get(key) or c.skeleton[key]}</textarea></li>
         </ul>
         <input type="submit" value="Edit this ticket" />
     </form>
-    <form action="${h.url_for(action='close')}" method="POST"><input type="submit" value="Close this ticket" /></form>
+    <form action="${url.current(action='close')}" method="POST"><input type="submit" value="Close this ticket" /></form>
 </div>
 
 </body></html>

@@ -11,8 +11,8 @@
     <script type="text/javascript">
       $(function(){
         $('#dvdev-issuedb').tabs();
-        $('ul.dvdev.issues li')
-            .draggable({revert: true});
+        $('ul.dvdev.issues')
+            .sortable();
       });
     </script>
     <style type="text/css">
@@ -33,10 +33,10 @@
         <li py:for="issuedb in enumerate(c.issues)"><a href="#tabs-${issuedb[0]}">${issuedb[1]}</a></li>
     </ul>
     <div id="tabs-${issuedb[0]}" py:for="issuedb in enumerate(c.issues)">
-        <a href="${h.url_for(repository=issuedb[1], action='new')}">New Issue</a>
+        <a href="${url.current(repository=issuedb[1], action='new')}">New Issue</a>
         <ul class="dvdev issues">
             <py:for each="issue in c.issues[issuedb[1]].iteritems()">
-              <li class="${issue[1]['estimate']['scale']}"><a href="${h.url_for(repository=issuedb[1], action='show',id=issue[0])}">${issue[0][:12]}</a><p>${issue[1]['title']}</p><p class="dvdev estimate">${issue[1]['estimate']['text']}</p></li>
+              <li class="${issue[1]['estimate']['scale']}"><a href="${url.current(repository=issuedb[1], action='show',id=issue[0])}">${issue[0][:12]}</a><p>${issue[1]['title']}</p><p class="dvdev estimate">${issue[1]['estimate']['text']}</p></li>
             </py:for>
         </ul>
     </div>

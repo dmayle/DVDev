@@ -50,7 +50,7 @@ class IssuesController(BaseController):
             c.issue = issue
             return render('issues/add.html')
         issueid = yamltrac.add(repositories[repository], issue)
-        redirect_to('/%s/issues/show/%s' % (repository, issueid))
+        redirect_to(str('/%s/issues/show/%s' % (repository, issueid)))
 
     def update(self, repository, id):
         """PUT /issues/id: Update an existing item"""

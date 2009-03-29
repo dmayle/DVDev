@@ -1,0 +1,7 @@
+comment: Opening ticket
+description: When your URL is for a wiki page that doesn't exist, present a create
+  this page stub
+estimate: 3 hours
+priority: green, red, or black
+status: open
+title: Create the form for adding wiki pages

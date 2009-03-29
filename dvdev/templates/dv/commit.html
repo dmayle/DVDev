@@ -17,7 +17,7 @@
 
 <h1 class="page_title">Diff</h1>
 
-<py:replace value="Markup(h.form(h.url_for(action='commit'), method='get'))"/>
+<py:replace value="Markup(h.form(url.current(action='commit'), method='get'))"/>
 <label for='message'>Commit Message:</label>
 <py:replace value="Markup(h.textarea('message'))"/>
 <py:replace value="Markup(h.submit('commit','Commit'))"/>

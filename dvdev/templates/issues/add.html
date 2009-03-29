@@ -17,7 +17,7 @@
 <h1 class="page_title">New Issue</h1>
 
 <div id="dvdev issue">
-    <form action="${h.url_for(action='new')}" method="POST">
+    <form action="${url.current(action='new')}" method="POST">
         <ul>
             <li py:for="key in c.skeleton" py:if="key not in ['status', 'comment']"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.skeleton[key]}</textarea></li>
         </ul>

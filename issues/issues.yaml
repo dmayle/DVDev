@@ -1,3 +1,18 @@
+106f89200b0d6cc25f93a22464e05031b95bd5c8:
+  description: "Add per file revert buttons to the diff/commit page\r\nBetter yet,\
+    \ checkboxes, and the ability to revert or commit just the checked files - Using\
+    \ jquery, we should click the whole diff and use color for checked or not checked.\
+    \  (in the html is checkboxes, jquery hides them and does the clicking interface)\
+    \ at the top, select all, select none, then commit or revert"
+  estimate: 3 Hours
+  status: open
+  title: Improve Diff/Commit UI
+10c40a197814ddba776ea821c9a4b4b060d200f3:
+  description: When your URL is for a wiki page that doesn't exist, present a create
+    this page stub
+  estimate: 3 hours
+  status: open
+  title: Create the form for adding wiki pages
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
   comment: Opening ticket
   description: Setup the navbars, and cleanup the url navigation.
@@ -13,8 +28,22 @@
 a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   description: Give a lightning talk at Pycon about DVDev
   estimate: 3 Minutes
-  status: open
+  status: closed
   title: Demo DVDev at Pycon
+dc9d9d721f9f96720426481a8677c93298cc83ee:
+  comment: Opening ticket
+  description: Add color to the issue display (index and detail) to indicate status  Maybe
+    a stop light for UI control?
+  estimate: 3 Days
+  status: open
+  title: Use color to display status
+e4f89685fc111b4055ef2e8c37ba9f43872390f2:
+  comment: Opening ticket
+  description: Create an interface to resizing the estimates by resizing the ticket
+    visually.  Maybe a slider in the detail view, as well
+  estimate: 2 days
+  status: open
+  title: Add resize/reestimate using jquery
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion

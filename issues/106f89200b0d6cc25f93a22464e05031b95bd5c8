@@ -1,0 +1,10 @@
+comment: Opening ticket
+description: "Add per file revert buttons to the diff/commit page\r\nBetter yet, checkboxes,\
+  \ and the ability to revert or commit just the checked files - Using jquery, we\
+  \ should click the whole diff and use color for checked or not checked.  (in the\
+  \ html is checkboxes, jquery hides them and does the clicking interface) at the\
+  \ top, select all, select none, then commit or revert"
+estimate: 3 Hours
+priority: green, red, or black
+status: open
+title: Improve Diff/Commit UI

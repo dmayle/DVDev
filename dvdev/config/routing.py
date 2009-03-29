@@ -13,7 +13,7 @@ def make_map():
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
     map.minimization = False
-    map.resource('issue', 'issues')
+    # map.resource('issue', 'issues')
 
     # The ErrorController route (handles 404/500 error pages); it should
     # likely stay at the top, ensuring it can always be resolved
@@ -32,8 +32,10 @@ def make_map():
     # Wiki routes allow us to get the url parts as a single variable
     map.connect('/wiki', controller='wiki', action='view', repository=repoid, path_info='')
     map.connect('/wiki/', controller='wiki', action='view', repository=repoid, path_info='')
-    map.connect('/wiki/{repository}/{path_info:.*}', controller='wiki', action='view')
     map.connect('/wiki/{path_info:.*}', controller='wiki', repository=repoid, action='view')
+    map.connect('/{repository}/wiki', controller='wiki', action='view', path_info='')
+    map.connect('/{repository}/wiki/', controller='wiki', action='view', path_info='')
+    map.connect('/{repository}/wiki/{path_info:.*}', controller='wiki', action='view')
 
     map.connect('/login', controller='openiduser', action='login')
     map.connect('/success', controller='openiduser', action='success')

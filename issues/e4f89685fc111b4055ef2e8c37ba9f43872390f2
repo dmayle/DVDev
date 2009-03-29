@@ -1,0 +1,6 @@
+comment: Opening ticket
+description: Create an interface to resizing the estimates by resizing the ticket
+  visually.  Maybe a slider in the detail view, as well
+estimate: 2 days
+status: open
+title: Add resize/reestimate using jquery
