@@ -1,0 +1,72 @@
+/* Thank you, cross-browser inline block: http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
+ul.dvdev.issues li {
+    width: 180px;
+    min-height: 180px;
+    border: 1px solid #000;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
+    _height: 250px;
+
+    position: relative;
+    border-top: 10px solid #feea3d;
+    background-color: #fef49b;
+    font-family: Helvetica, sans-serif;
+}
+ul.dvdev.issues li.unplanned {
+    border-top: 1px solid black;
+    background-image: url(/indexcard.png);
+    background-repeat: repeat;
+}
+ul.dvdev.issues li.short {
+    width: 150px;
+    min-height: 150px;
+}
+ul.dvdev.issues li.long {
+    width: 210px;
+    min-height: 210px;
+}
+div.dvdev.issue {
+    background-color: #fff;
+    border: 1px solid black;
+}
+p.dvdev.estimate {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 150%;
+    padding: 0;
+    margin: 0 10px 10px 0;
+}
+body.dvdev.uncommitted {
+    background-image: url(/preview.png);
+    background-repeat: repeat;
+}
+ul.dvdev.commit {
+    list-style: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+ul.dvdev.topnav {
+    list-style: none;
+    clear: both;
+}
+ul.dvdev.topnav li {
+    width: 100px;
+    min-height: 40px;
+    border: 1px solid #000;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
+    _height: 40px;
+}
+li.dvdev.revision {
+    background-color: pink;
+}

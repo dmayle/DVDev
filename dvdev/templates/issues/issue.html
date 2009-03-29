@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      lang="en">
+<xi:include href="../site.html" />
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>${c.project}: View/Edit ticket</title>
+    <script type="text/javascript">
+      $(function(){
+      });
+    </script>
+</head><body>
+
+<h1 class="page_title">Issue: ${c.id}</h1>
+
+<div class="dvdev issue">
+    <h2>${c.issue['title']}</h2>
+    <ul>
+        <li py:for="key in c.issue" py:if="key != 'title'">${key[0].upper() + key[1:]}: ${c.issue[key]}</li>
+    </ul>
+    <ul class="dvdev issuehistory">
+        <p py:if="c.uncommitted_diff">Uncommitted changes:</p>
+        <ul py:if="c.uncommitted_diff">
+            <li py:for="changeset in c.uncommitted_diff[0].iteritems()">Added: ${changeset[0]} with value ${changeset[1]}</li>
+            <li py:for="changeset in c.uncommitted_diff[1].iteritems()">Removed: ${changeset[0]} with value ${changeset[1]}</li>
+            <li py:for="changeset in c.uncommitted_diff[2].iteritems()">Changed: ${changeset[0]} from '${changeset[1][0]}' to '${changeset[1][1]}'</li>
+        </ul>
+        <li class="dvdev revision" py:for="version in c.versions">
+            <p>On ${version['date']}, ${version['user']} made the following changes: (<a href="/source/YAMLTrac/rev/${version['node']}">${version['node'][:12]}</a>)</p>
+            <ul py:if="version.get('diff')">
+                <li py:for="changeset in version['diff'][0].iteritems()">Added: ${changeset[0]} with value ${changeset[1]}</li>
+                <li py:for="changeset in version['diff'][1].iteritems()">Removed: ${changeset[0]} with value ${changeset[1]}</li>
+                <li py:for="changeset in version['diff'][2].iteritems()">Changed: ${changeset[0]} from '${changeset[1][0]}' to '${changeset[1][1]}'</li>
+            </ul>
+            <p>Linked files:</p>
+            <ul>
+                <li py:for="file in version['files']"><a href="/source/YAMLTrac/file/${version['node']}/${file}">${file}</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form action="${h.url_for(action='edit')}" method="POST">
+        <ul>
+            <li py:for="key in c.skeleton"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.issue.get(key) or c.skeleton[key]}</textarea></li>
+        </ul>
+        <input type="submit" value="Edit this ticket" />
+    </form>
+    <form action="${h.url_for(action='close')}" method="POST"><input type="submit" value="Close this ticket" /></form>
+</div>
+
+</body></html>
+

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      lang="en">
+<xi:include href="../site.html" />
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>${c.project}: View repo diff and commit changes</title>
+    <link rel="stylesheet" type="text/css" href="default.css" 
+        py:attrs="{'href': '/default.css'}" />
+    <script type="text/javascript">
+    </script>
+    <style type="text/css" py:content="c.css"></style>
+</head><body>
+
+<h1 class="page_title">Diff</h1>
+
+<py:replace value="Markup(h.form(h.url_for(action='commit'), method='get'))"/>
+<label for='message'>Commit Message:</label>
+<py:replace value="Markup(h.textarea('message'))"/>
+<py:replace value="Markup(h.submit('commit','Commit'))"/>
+<py:replace value="Markup(h.end_form())"/>
+<div py:content="Markup(c.diff)" />
+
+</body></html>
+

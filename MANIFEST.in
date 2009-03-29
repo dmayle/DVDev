@@ -1,0 +1,3 @@
+include dvdev/config/deployment.ini_tmpl
+recursive-include dvdev/public *
+recursive-include dvdev/templates *
