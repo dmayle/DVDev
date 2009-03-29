@@ -1,0 +1,5 @@
+comment: Opening ticket
+description: Since Pylons comes with pygments, we should turn on syntax highlighting
+estimate: 1 hour
+status: closed
+title: Turn on syntax highlighting in the source browser

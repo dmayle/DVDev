@@ -13,6 +13,11 @@
   estimate: 3 hours
   status: open
   title: Create the form for adding wiki pages
+1326bd84624f2f133b290dd4989e7902954b248a:
+  description: Since Pylons comes with pygments, we should turn on syntax highlighting
+  estimate: 1 hour
+  status: closed
+  title: Turn on syntax highlighting in the source browser
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
   comment: Opening ticket
   description: Setup the navbars, and cleanup the url navigation.
