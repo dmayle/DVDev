@@ -29,7 +29,7 @@
             <li py:for="changeset in c.uncommitted_diff[2].iteritems()">Changed: ${changeset[0]} from '${changeset[1][0]}' to '${changeset[1][1]}'</li>
         </ul>
         <li class="dvdev revision" py:for="version in c.versions">
-            <p>On ${version['date']}, ${version['user']} made the following changes: (<a href="/source/YAMLTrac/rev/${version['node']}">${version['node'][:12]}</a>)</p>
+            <p>On ${version['date']}, ${version['user']} made the following changes: (<a href="/source/YAMLTrak/rev/${version['node']}">${version['node'][:12]}</a>)</p>
             <ul py:if="version.get('diff')">
                 <li py:for="changeset in version['diff'][0].iteritems()">Added: ${changeset[0]} with value ${changeset[1]}</li>
                 <li py:for="changeset in version['diff'][1].iteritems()">Removed: ${changeset[0]} with value ${changeset[1]}</li>
@@ -37,7 +37,7 @@
             </ul>
             <p>Linked files:</p>
             <ul>
-                <li py:for="file in version['files']"><a href="/source/YAMLTrac/file/${version['node']}/${file}">${file}</a></li>
+                <li py:for="file in version['files']"><a href="/source/YAMLTrak/file/${version['node']}/${file}">${file}</a></li>
             </ul>
         </li>
     </ul>

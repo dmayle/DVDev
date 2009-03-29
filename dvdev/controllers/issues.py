@@ -6,7 +6,7 @@ from pylons.decorators import rest
 
 from dvdev.lib.base import BaseController, render
 
-import yamltrac
+import yamltrak
 from pylons import config
 from os import path
 
@@ -25,8 +25,8 @@ class IssuesController(BaseController):
         # url('issues')
         # Read the config to find the repository source...
         # Need to figure out the ini file, the issues directory
-        # I think YAMLTrac should be a package, not a webapp...
-        c.issues = yamltrac.issues(repositories.values(), 'issues')
+        # I think YAMLTrak should be a package, not a webapp...
+        c.issues = yamltrak.issues(repositories.values(), 'issues')
         return render('issues/index.html')
 
     def create(self, repository):
@@ -36,7 +36,7 @@ class IssuesController(BaseController):
     @rest.dispatch_on(POST='_add_new')
     def new(self, repository, format='html'):
         """GET /issues/new: Form to create a new item"""
-        skeleton = yamltrac.issue(repositories[repository], 'issues', 'skeleton', detail=False)
+        skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
         c.skeleton = skeleton[0]['data']
         return render('issues/add.html')
         # url('new_issue')
@@ -49,7 +49,7 @@ class IssuesController(BaseController):
         if not issue['title'] or not issue['description'] or not issue['estimate']:
             c.issue = issue
             return render('issues/add.html')
-        issueid = yamltrac.add(repositories[repository], issue)
+        issueid = yamltrak.add(repositories[repository], issue)
         redirect_to(str('/%s/issues/show/%s' % (repository, issueid)))
 
     def update(self, repository, id):
@@ -73,7 +73,7 @@ class IssuesController(BaseController):
     def close(self, repository, id):
         """POST /issues/id: Show a specific item"""
         # url('issue', id=ID)
-        if yamltrac.close(repositories[repository], id):
+        if yamltrak.close(repositories[repository], id):
             redirect_to('/issues')
         redirect_to(action='show', id=id)
 
@@ -81,8 +81,8 @@ class IssuesController(BaseController):
         """GET /repository/issues/id: Show a specific item"""
         # url('issue', id=ID)
         c.id = id
-        issue = yamltrac.issue(repositories[repository], 'issues', id)
-        skeleton = yamltrac.issue(repositories[repository], 'issues', 'skeleton', detail=False)
+        issue = yamltrak.issue(repositories[repository], 'issues', id)
+        skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
         c.issue = issue[0]['data']
         c.skeleton = skeleton[0]['data']
         c.uncommitted_diff = issue[0].get('diff')
@@ -93,10 +93,10 @@ class IssuesController(BaseController):
     def edit(self, repository, id, format='html'):
         """GET /issues/id/edit: Form to edit an existing item"""
         # url('edit_issue', id=ID)
-        skeleton = yamltrac.issue(repositories[repository], 'issues', 'skeleton', detail=False)
+        skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
         issue = {}
         for key in skeleton[0]['data']:
             if key in request.params:
                 issue[key] = request.params[key]
-        yamltrac.edit_issue(repositories[repository], 'issues', issue, id)
+        yamltrak.edit_issue(repositories[repository], 'issues', issue, id)
         redirect_to(action='show', id=id)
