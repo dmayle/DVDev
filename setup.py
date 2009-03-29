@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name='DVDev',
-    version='0.1',
+    version='0.1.1',
     description='',
     author='',
     author_email='',
@@ -19,6 +19,7 @@ setup(
         "repoze.who",
         "repoze.who.plugins.openid",
         "docutils",
+        "yamltrac",
     ],
     setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
