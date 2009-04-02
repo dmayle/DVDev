@@ -21,8 +21,10 @@
 <label for='message'>Commit Message:</label>
 <py:replace value="Markup(h.textarea('message'))"/>
 <py:replace value="Markup(h.submit('commit','Commit'))"/>
+<ul>
+    <li py:for="diff in c.diffs"><input name="${diff['filename']}" type="hidden" value="${diff['repository']}" /><input name="${diff['filename']}" type="checkbox" checked="checked" /><label>${diff['filename']}</label><div py:replace="Markup(diff['diff'])" /></li>
+</ul>
 <py:replace value="Markup(h.end_form())"/>
-<div py:content="Markup(c.diff)" />
 
 </body></html>
 

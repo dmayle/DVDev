@@ -27,7 +27,7 @@ def make_map():
 
     # CUSTOM ROUTES HERE
     map.connect('/source', controller='mercurialgateway', path_info='')
-    map.connect('/source/{path_info:.*}', controller='mercurialgateway')
+    map.connect('source', '/source/{path_info:.*}', controller='mercurialgateway')
 
     # Wiki routes allow us to get the url parts as a single variable
     map.connect('/wiki', controller='wiki', action='view', repository=repoid, path_info='')
@@ -35,7 +35,7 @@ def make_map():
     map.connect('/wiki/{path_info:.*}', controller='wiki', repository=repoid, action='view')
     map.connect('/{repository}/wiki', controller='wiki', action='view', path_info='')
     map.connect('/{repository}/wiki/', controller='wiki', action='view', path_info='')
-    map.connect('/{repository}/wiki/{path_info:.*}', controller='wiki', action='view')
+    map.connect('wiki', '/{repository}/wiki/{path_info:.*}', controller='wiki', action='view')
 
     map.connect('/login', controller='openiduser', action='login')
     map.connect('/success', controller='openiduser', action='success')

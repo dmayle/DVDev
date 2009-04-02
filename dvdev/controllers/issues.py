@@ -1,7 +1,8 @@
 import logging
 
 from pylons import request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect_to, redirect
+from webhelpers.urls import url
 from pylons.decorators import rest
 
 from dvdev.lib.base import BaseController, render
@@ -50,7 +51,7 @@ class IssuesController(BaseController):
             c.issue = issue
             return render('issues/add.html')
         issueid = yamltrak.add(repositories[repository], issue)
-        redirect_to(str('/%s/issues/show/%s' % (repository, issueid)))
+        redirect(url.current(repository=repository, id=issueid, action='show'))
 
     def update(self, repository, id):
         """PUT /issues/id: Update an existing item"""

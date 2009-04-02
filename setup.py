@@ -20,6 +20,8 @@ setup(
         "repoze.who.plugins.openid",
         "docutils",
         "yamltrak",
+        "Meritocracy",
+        "filesafe",
     ],
     setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
