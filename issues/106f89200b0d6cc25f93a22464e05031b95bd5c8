@@ -1,4 +1,4 @@
-comment: Opening ticket
+comment: Added support for selective commit
 description: "Add per file revert buttons to the diff/commit page\r\nBetter yet, checkboxes,\
   \ and the ability to revert or commit just the checked files - Using jquery, we\
   \ should click the whole diff and use color for checked or not checked.  (in the\

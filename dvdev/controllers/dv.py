@@ -70,5 +70,10 @@ class DvController(BaseController):
             if root not in changeset:
                 continue
             repochroot = Chroot(repo.root)
-            commands.commit(self.ui, repo, message=message, logfile=None)
+            try:
+                files = (repochroot('./' + file) for file in changeset[root])
+            except IOError:
+                error = 'Bad Filename'
+                redirect(url.current(action='index', error=error))
+            commands.commit(self.ui, repo, message=message, logfile=None, *files)
         redirect(url.current(action='index'))
