@@ -10,8 +10,7 @@
     <title>${c.project}: Open tickets</title>
     <script type="text/javascript">
       $(function(){
-        $('#dvdev-issuedb').tabs();
-        // $('#dvdev-issuedb').tabs({selected: ${c.issues.keys().index(c.project)}});
+        $('#dvdev-issuedb').tabs({selected: ${c.issues.keys().index(c.project)}});
         $('ul.dvdev.issues')
             .sortable();
       });

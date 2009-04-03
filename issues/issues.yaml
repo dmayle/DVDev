@@ -35,10 +35,9 @@ a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   status: closed
   title: Demo DVDev at Pycon
 dc259c93c8699bd76b0c87ed48f5853a85c6973a:
-  comment: Opening ticket
   description: The selected tab is always the first project
   estimate: 5 minutes
-  status: open
+  status: closed
   title: Fix issue index to select tab of current project
 dc9d9d721f9f96720426481a8677c93298cc83ee:
   comment: Opening ticket

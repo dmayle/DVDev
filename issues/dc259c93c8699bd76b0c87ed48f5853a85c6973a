@@ -1,5 +1,6 @@
-comment: Opening ticket
+comment: Fixing this issue
 description: The selected tab is always the first project
 estimate: 5 minutes
-status: open
+priority: green, red, or black
+status: closed
 title: Fix issue index to select tab of current project
