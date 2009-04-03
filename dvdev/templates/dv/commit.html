@@ -22,7 +22,17 @@
 <py:replace value="Markup(h.textarea('message'))"/>
 <py:replace value="Markup(h.submit('commit','Commit'))"/>
 <ul>
-    <li py:for="diff in c.diffs"><input name="${diff['filename']}" type="hidden" value="${diff['repository']}" /><input name="${diff['filename']}" type="checkbox" checked="checked" /><label>${diff['filename']}</label><div py:replace="Markup(diff['diff'])" /></li>
+    <li py:for="diff in c.diffs">
+        <input name="${diff['filename']}" type="hidden" value="${diff['repository']}" />
+        <input name="${diff['filename']}" type="checkbox" checked="checked" />
+        <a href="${url.current(action='revert', repo=diff['repository'], filename=diff['filename'])}">Revert</a>
+        <ul py:if="diff['relatedissues']">
+            <li py:for="issue in diff['relatedissues']"><a href="${url(repository=diff['relatedissues'][issue]['repo'], controller='issues', action='show', id=issue)}">Ticket: ${diff['relatedissues'][issue]['title']}</a></li>
+        </ul>
+        <a href="${url(repository=diff['repository'], controller='issues')}">All Issues</a>
+        <a href="${url(repository=diff['repository'], controller='issues', action='new')}">Create New Issue</a>
+        <label>${diff['filename']}</label><div py:replace="Markup(diff['diff'])" />
+    </li>
 </ul>
 <py:replace value="Markup(h.end_form())"/>
 
