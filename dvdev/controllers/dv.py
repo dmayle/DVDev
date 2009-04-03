@@ -97,7 +97,6 @@ class DvController(BaseController):
         redirect(url.current(action='index'))
 
     def revert(self):
-        return
         """Revert the given file to its pristine state."""
         # The variable passing schema we use means that we'll have problems
         # with a repository named 'on'.  We should look into a fix for that.
@@ -120,7 +119,7 @@ class DvController(BaseController):
             redirect(url.current(action='index'))
         repochroot = Chroot(repo.root)
         try:
-            filepath = repochroot('./' + filename)
+            filepath = repochroot(path.join(repo.root, filename))
         except IOError:
             error = 'Bad Filename'
             redirect(url.current(action='index', error=error))
