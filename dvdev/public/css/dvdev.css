@@ -70,3 +70,8 @@ ul.dvdev.topnav li {
 li.dvdev.revision {
     background-color: pink;
 }
+li.dvdev.diff {
+    background-color: lightgrey;
+    padding: 5px;
+    margin: 10px;
+}
