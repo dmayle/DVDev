@@ -34,6 +34,12 @@ a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   estimate: 3 Minutes
   status: closed
   title: Demo DVDev at Pycon
+dc259c93c8699bd76b0c87ed48f5853a85c6973a:
+  comment: Opening ticket
+  description: The selected tab is always the first project
+  estimate: 5 minutes
+  status: open
+  title: Fix issue index to select tab of current project
 dc9d9d721f9f96720426481a8677c93298cc83ee:
   comment: Opening ticket
   description: Add color to the issue display (index and detail) to indicate status  Maybe

@@ -1,0 +1,5 @@
+comment: Opening ticket
+description: The selected tab is always the first project
+estimate: 5 minutes
+status: open
+title: Fix issue index to select tab of current project
