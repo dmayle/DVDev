@@ -15,9 +15,9 @@
     <!-- Put anything that should appear before the page content here (e.g., logo, menu, left sidebar) -->
     <h1>${c.project}</h1>
     <ul class="dvdev topnav">
-        <li><a href="/issues">Issues</a></li>
-        <li><a href="/wiki">Documentation</a></li>
-        <li><a href="/source">Source Control</a></li>
+        <li><a href="${url(repository=c.project, controller='issues')}">Issues</a></li>
+        <li><a href="${url(repository=c.project, controller='wiki')}">Documentation</a></li>
+        <li><a href="${url(repository=c.project, controller='issues')}">Source Control</a></li>
     </ul>
 
 
@@ -25,7 +25,7 @@
 
     <!-- Put anything that should appear after the page content here (e.g., page footer, copyright, "Contact Us" link). -->
     <ul py:if="c.uncommitted" class="dvdev commit">
-        <li><a href="${url('/dv')}">Diff/Commit</a></li>
+        <li><a href="${url(repository=c.project,controller='dv')}">Diff/Commit</a></li>
     </ul>
   </body>
 </html>

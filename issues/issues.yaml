@@ -19,7 +19,6 @@
   status: closed
   title: Turn on syntax highlighting in the source browser
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
-  comment: Opening ticket
   description: Setup the navbars, and cleanup the url navigation.
   estimate: 1 Week
   status: open

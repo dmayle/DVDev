@@ -1,5 +1,6 @@
-comment: Opening ticket
+comment: Fixed up most of the links
 description: Setup the navbars, and cleanup the url navigation.
 estimate: 1 Week
+priority: green, red, or black
 status: open
 title: Clean up the html
