@@ -35,6 +35,12 @@
   estimate: ''
   status: open
   title: Get help creating a repoze.what plugin for meritocracy
+77346645eace08324590f222708c4a37d082efa4:
+  description: Currently, launching DVDev requires a manual config process.  Create
+    a command line to make this easier.
+  estimate: 3 Days
+  status: open
+  title: Add command line for launching DVDev
 86f5632151da060b32852b52c0df7b8a02cb35d4:
   description: Give detailed docs on how to host this on dreamhost.  Also post this
     to dreamhost wiki.
