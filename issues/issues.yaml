@@ -23,6 +23,12 @@
   estimate: 1 Week
   status: open
   title: Clean up the html
+49f5b1a6cc0405669ad915bf44258fbef4dd4cff:
+  description: Add a project dashboard that gives incomers directions as to where
+    to go
+  estimate: 1 Week
+  status: open
+  title: Add support for a project dashboard
 543534016613021c46cf19d843ef15e00c488616:
   description: Get help turning the meritocracy proof of concept into a functioning
     repoze.what plugin.
