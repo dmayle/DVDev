@@ -1,0 +1,19 @@
+Running DVDev on Dreamhost
+==========================
+
+Running DVDev on a Dreamhost shared hosting plan requires some extra work to
+get going.  Because of Apache restrictions, and certain file permission
+defaults, we have to perform some extra steps to get running.
+
+
+Creating a Private Python Environment
+-------------------------------------
+
+Because DVDev depends on software that is not already installed, or sometimes
+installed with a conflicting version, we need to create a private Python
+environment. The two most common ways of handling this are compiling your own
+Python, pointing it to your own install and lib directories, and using
+virtualenv to simulate the same thing.  As virtualenv is by far the easier of
+the two routes, it's the method we'll use here.
+
+    python2.5 `which virtualenv` myproject.org

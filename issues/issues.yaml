@@ -36,7 +36,6 @@
   status: open
   title: Get help creating a repoze.what plugin for meritocracy
 86f5632151da060b32852b52c0df7b8a02cb35d4:
-  comment: Opening ticket
   description: Give detailed docs on how to host this on dreamhost.  Also post this
     to dreamhost wiki.
   estimate: 1 Day

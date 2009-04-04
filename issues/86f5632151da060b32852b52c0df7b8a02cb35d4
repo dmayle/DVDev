@@ -1,6 +1,7 @@
-comment: Opening ticket
+comment: Created initial docs, needs to be fleshed out while performing the install
 description: Give detailed docs on how to host this on dreamhost.  Also post this
   to dreamhost wiki.
 estimate: 1 Day
+priority: green, red, or black
 status: open
 title: How to host this on dreamhost doc
