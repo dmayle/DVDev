@@ -1,4 +1,4 @@
-comment: Added initial handling for create this page.
+comment: Forgot to add the template. Planning tests as well
 description: When your URL is for a wiki page that doesn't exist, present a create
   this page stub
 estimate: 3 hours
