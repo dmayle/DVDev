@@ -30,12 +30,12 @@ def make_map():
     map.connect('source', '/source/{path_info:.*}', controller='mercurialgateway')
 
     # Wiki routes allow us to get the url parts as a single variable
-    map.connect('/wiki', controller='wiki', action='view', repository=repoid, path_info='')
-    map.connect('/wiki/', controller='wiki', action='view', repository=repoid, path_info='')
-    map.connect('/wiki/{action}/{path_info:.*}', controller='wiki', repository=repoid, action='view')
-    map.connect('/{repository}/wiki', controller='wiki', action='view', path_info='')
-    map.connect('/{repository}/wiki/', controller='wiki', action='view', path_info='')
-    map.connect('wiki', '/{repository}/wiki/{action}/{path_info:.*}', controller='wiki', action='view')
+    map.connect('/wiki', controller='wiki', action='view', repository=repoid, wikipath='')
+    map.connect('/wiki/', controller='wiki', action='view', repository=repoid, wikipath='')
+    map.connect('/wiki/{action}/*wikipath', controller='wiki', repository=repoid, action='view')
+    map.connect('/{repository}/wiki', controller='wiki', action='view', wikipath='')
+    map.connect('/{repository}/wiki/', controller='wiki', action='view', wikipath='')
+    map.connect('wiki', '/{repository}/wiki/{action}/*wikipath', controller='wiki', action='view', wikipath='')
 
     map.connect('/login', controller='openiduser', action='login')
     map.connect('/success', controller='openiduser', action='success')
