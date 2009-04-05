@@ -1,4 +1,5 @@
-comment: Initial work done, waiting for response from Ian
+comment: Got it running... I still have some issues with the 'here' keyword and config
+  for repoze.who
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 3 Days
