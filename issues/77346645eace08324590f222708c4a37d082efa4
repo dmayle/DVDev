@@ -1,5 +1,5 @@
-comment: Got it running... I still have some issues with the 'here' keyword and config
-  for repoze.who
+comment: Yay, I've got debug tracebacks, still need sensible handling of command line
+  arguments, like --debug (--reload) and specifying the root as a command line option.
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 3 Days

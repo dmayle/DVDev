@@ -47,7 +47,9 @@ def build_repo_tree(root=os.getcwd(), maxdepth=2):
 
 
 def flatten(lst):
-    """Temp function to flatten the nested lists."""
+    """\
+    Temp function to flatten the nested lists. At some point, the repos will be
+    in dictionaries that mirror the directory's tree structure."""
     output = []
     try:
         if not isinstance(lst, basestring):
@@ -67,18 +69,18 @@ def main():
         'full_stack': 'true',
         'static_files': 'true',
 
-        'cache_dir': '%(here)s/data',
+        'reporoot': os.getcwd(),
+        'cache_dir': os.path.join(os.getcwd(), 'data'),
         'beaker.session.key': 'dvdev',
         'beaker.session.secret': 'somesecret',
 
         'repo': ' '.join(filter(None, flatten(build_repo_tree()))),
         'project_home': 'issues',
-        'who.config_file': '/Users/douglas/Projects/dvdev/src/who.ini',
         'who.log_level': 'debug',
         'who.log_file': 'stdout',
-        'workspace': '%(here)s/workspace',
+        'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
-    app = make_app({'here': os.path.abspath(os.getcwd())}, **config)
+    app = make_app({'debug': 'true'}, **config)
     serve(app, host='0.0.0.0', port=3000)
 
 if __name__ == '__main__':

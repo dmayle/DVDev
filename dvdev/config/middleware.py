@@ -10,7 +10,22 @@ from pylons.wsgiapp import PylonsApp
 from routes.middleware import RoutesMiddleware
 
 from dvdev.config.environment import load_environment
+import os
 from repoze.who.config import make_middleware_with_config as make_who_with_config
+
+# All sorts of repoze.who symbols.
+from repoze.who.middleware import PluggableAuthenticationMiddleware
+from repoze.who.interfaces import IIdentifier
+from repoze.who.interfaces import IChallenger
+from repoze.who.plugins.auth_tkt import AuthTktCookiePlugin
+from repoze.who.plugins.openid import OpenIdIdentificationPlugin
+
+
+from repoze.who.classifiers import default_request_classifier
+from repoze.who.classifiers import default_challenge_decider
+
+
+
 
 def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     """Create a Pylons WSGI application and return it
@@ -47,7 +62,44 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     app = CacheMiddleware(app, config)
 
     # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
-    app = make_who_with_config(app, global_conf, app_conf['who.config_file'], app_conf['who.log_file'], app_conf['who.log_level'])
+    auth_tkt = AuthTktCookiePlugin(')h,&xCWlS}+u:<yD]BJV', 'auth_tkt')
+    openid = OpenIdIdentificationPlugin('file', # 'mem'
+            openid_field = 'openid',
+            error_field = 'error',
+            session_name = 'beaker.session',
+            login_form_url = '/login_form',
+            login_handler_path = '/do_login',
+            logout_handler_path = '/logout',
+            store_file_path = os.path.join(config['reporoot'], 'sstore'),
+            logged_in_url = '/success',
+            logged_out_url = 'logout_success',
+            came_from_field = 'came_from',
+            rememberer_name = 'auth_tkt',
+            sql_associations_table = '',
+            sql_nonces_table = '',
+            sql_connstring = ''
+            )
+
+    identifiers = [('openid', openid),('auth_tkt',auth_tkt)]
+    authenticators = [('openid', openid)]
+    challengers = [('openid', openid)]
+    mdproviders = []
+    log_stream = None
+    if config.get('WHO_LOG'):
+        log_stream = sys.stdout
+
+    app = PluggableAuthenticationMiddleware(
+        app,
+        identifiers,
+        authenticators,
+        challengers,
+        mdproviders,
+        default_request_classifier,
+        default_challenge_decider,
+        log_stream = log_stream,
+        log_level=app_conf['who.log_level']
+        )
+    # app = make_who_with_config(app, global_conf, app_conf['who.config_file'], app_conf['who.log_file'], app_conf['who.log_level'])
 
     if asbool(full_stack):
         # Handle Python exceptions
