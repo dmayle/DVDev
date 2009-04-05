@@ -44,7 +44,11 @@ class DvController(BaseController):
                                'diff': highlight(diff, DiffLexer(), HtmlFormatter())})
             # At the repo level, we want to go through all found files and look
             # for related issues
-            issues = yamltrak.issues([repo.root])[root]
+            try:
+                issues = yamltrak.issues([repo.root])[root]
+            except IndexError:
+                # There is no issue database, or maybe just no open issues...
+                issues = {}
             for diff in repodiffs:
                 relatedissues = yamltrak.relatedissues(repo.root, filename=diff['filename'], ids=issues.keys())
                 related = {}

@@ -52,6 +52,11 @@ a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   estimate: 3 Minutes
   status: closed
   title: Demo DVDev at Pycon
+c149d4f9dbffe413bcc39cab14d51522ffa69ab0:
+  description: Stupid traceback on IndexError
+  estimate: 5 minutes
+  status: closed
+  title: Commit screen doesn't handle repos without issues
 dc259c93c8699bd76b0c87ed48f5853a85c6973a:
   description: The selected tab is always the first project
   estimate: 5 minutes

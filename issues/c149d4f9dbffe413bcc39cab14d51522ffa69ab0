@@ -1,0 +1,6 @@
+comment: Fixed in initial commit
+description: Stupid traceback on IndexError
+estimate: 5 minutes
+priority: green, red, or black
+status: closed
+title: Commit screen doesn't handle repos without issues
