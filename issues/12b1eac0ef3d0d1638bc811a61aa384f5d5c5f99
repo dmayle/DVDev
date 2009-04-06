@@ -1,6 +1,8 @@
-comment: Opening ticket
+comment: Adding the full license text.
 description: Fix the setup.py and attach copyright headers to each of the source files
   to show off the license.
 estimate: 1 Hour
-status: open
+group: Crawling Crawfish
+priority: red, yellow, blue
+status: closed
 title: Clarify the GNU Affero GPLv3 licensing terms.
