@@ -62,7 +62,7 @@ class DvController(BaseController):
             # for related issues
             try:
                 issues = yamltrak.issues([repo.root])[root]
-            except IndexError:
+            except KeyError:
                 # There is no issue database, or maybe just no open issues...
                 issues = {}
             for diff in repodiffs:
