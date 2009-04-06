@@ -13,6 +13,12 @@
   estimate: 3 hours
   status: open
   title: Create the form for adding wiki pages
+12b1eac0ef3d0d1638bc811a61aa384f5d5c5f99:
+  description: Fix the setup.py and attach copyright headers to each of the source
+    files to show off the license.
+  estimate: 1 Hour
+  status: closed
+  title: Clarify the GNU Affero GPLv3 licensing terms.
 1326bd84624f2f133b290dd4989e7902954b248a:
   description: Since Pylons comes with pygments, we should turn on syntax highlighting
   estimate: 1 hour
