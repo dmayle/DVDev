@@ -1,0 +1,6 @@
+comment: Opening ticket
+description: Fix the setup.py and attach copyright headers to each of the source files
+  to show off the license.
+estimate: 1 Hour
+status: open
+title: Clarify the GNU Affero GPLv3 licensing terms.
