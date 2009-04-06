@@ -81,7 +81,7 @@ def main():
         'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
     app = make_app({'debug': 'true'}, **config)
-    serve(app, host='0.0.0.0', port=3000)
+    serve(app, host='0.0.0.0', port=4000)
 
 if __name__ == '__main__':
     main()

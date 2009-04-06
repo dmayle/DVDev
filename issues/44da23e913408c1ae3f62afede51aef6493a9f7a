@@ -1,0 +1,6 @@
+comment: Opening ticket
+description: We need ticket groups to organize the work, to some day have a sense
+  of completion
+estimate: 1 Day
+status: open
+title: Add support for ticket groupings
