@@ -4,6 +4,7 @@ from paste.httpserver import serve
 from tempfile import NamedTemporaryFile
 from mercurial import hg, ui, util
 from mercurial.error import RepoError
+import webbrowser
 
 def build_config():
     """\
@@ -36,11 +37,15 @@ def build_repo_tree(root=os.getcwd(), maxdepth=2):
         # I'm feeling lazy, so I think I'm gonna do this recursively with a
         # maxdepth. For each subdirectory of the current, check to see if it's
         # a repo.
+        if os.path.basename(root) in ['sstore', 'data']:
+            return
         return [build_repo_tree(subpath, maxdepth-1) for subpath in os.listdir(root)]
     except util.Abort:
         # I'm feeling lazy, so I think I'm gonna do this recursively with a
         # maxdepth. For each subdirectory of the current, check to see if it's
         # a repo.
+        if os.path.basename(root) in ['sstore', 'data']:
+            return
         return [build_repo_tree(subpath, maxdepth-1) for subpath in os.listdir(root)]
 
     return os.path.abspath(root)
@@ -63,7 +68,8 @@ def flatten(lst):
 
 def main():
     
-    print "All repositories: %r" % filter(None, flatten(build_repo_tree()))
+    all_repos = filter(None, flatten(build_repo_tree()))
+    print "All repositories: %r" % all_repos
     config = {
         'use': 'egg:DVDev',
         'full_stack': 'true',
@@ -74,14 +80,16 @@ def main():
         'beaker.session.key': 'dvdev',
         'beaker.session.secret': 'somesecret',
 
-        'repo': ' '.join(filter(None, flatten(build_repo_tree()))),
+        'repo': ' '.join(all_repos),
         'project_home': 'issues',
         'who.log_level': 'debug',
         'who.log_file': 'stdout',
         'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
     app = make_app({'debug': 'true'}, **config)
-    serve(app, host='0.0.0.0', port=4000)
+    port = 4000
+    webbrowser.open('http://localhost:%d/' % port)
+    serve(app, host='0.0.0.0', port=port)
 
 if __name__ == '__main__':
     main()
