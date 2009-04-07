@@ -1,0 +1,8 @@
+comment: Opening ticket
+description: There are some safety issues with using file paths supplied by users.  Make
+  sure to use filesafe...
+estimate: 1 Hour
+group: Crawling Crawfish
+priority: red, yellow, blue
+status: closed
+title: Fix path safety issues

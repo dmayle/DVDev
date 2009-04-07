@@ -25,6 +25,7 @@ from pylons import config
 from os import path
 from docutils.core import publish_parts
 from pylons.decorators import rest
+from filesafe import Chroot
 
 log = logging.getLogger(__name__)
 
@@ -43,7 +44,8 @@ class WikiController(BaseController):
         if not wikipath:
             wikipath = default_page
         try:
-            with open(path.join(repositories[repository], wikipath)) as page:
+            repochroot = Chroot(repositories[repository])
+            with open(repochroot(path.join(repositories[repository], wikipath))) as page:
                 c.page_text = page.read()
         except IOError, e:
             # File not found error
@@ -65,7 +67,8 @@ class WikiController(BaseController):
         if not wikipath:
             wikipath = default_page
         try:
-            with open(path.join(repositories[repository], wikipath)) as page:
+            repochroot = Chroot(repositories[repository])
+            with open(repochroot(path.join(repositories[repository], wikipath))) as page:
                 pass
             # We can read, so we redirect to the page edit view
             redirect(url.current(action='view'))

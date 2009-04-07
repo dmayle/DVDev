@@ -25,7 +25,7 @@ from pylons import request, response, session, tmpl_context as c
 
 from pylons import config
 from mercurial import commands, ui, hg
-from dvdev.lib import get_sanitized_path
+from filesafe import get_sanitized_path
 from os import makedirs, path
 
 repositories = config.get('repo').split()

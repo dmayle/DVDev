@@ -42,6 +42,12 @@
   estimate: 1 Week
   status: open
   title: Add support for a project dashboard
+4b5d33fd650931f9ecd2f3b41852adad0d82dfcc:
+  description: There are some safety issues with using file paths supplied by users.  Make
+    sure to use filesafe...
+  estimate: 1 Hour
+  status: closed
+  title: Fix path safety issues
 543534016613021c46cf19d843ef15e00c488616:
   description: Get help turning the meritocracy proof of concept into a functioning
     repoze.what plugin.

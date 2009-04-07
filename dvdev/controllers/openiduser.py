@@ -27,7 +27,6 @@ from pygments import highlight
 from pygments.lexers import DiffLexer
 from pygments.formatters import HtmlFormatter
 
-from dvdev.lib import get_sanitized_path
 from mercurial import commands, ui, hg
 
 from re import compile
