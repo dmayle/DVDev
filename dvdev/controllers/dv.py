@@ -94,6 +94,7 @@ class DvController(BaseController):
 
         return diffs
 
+    @rest.dispatch_on(GET='index')
     def commit(self):
         """Use the list of files given by the user to commit to the repository"""
         # The variable passing schema we use means that we'll have problems
@@ -104,32 +105,21 @@ class DvController(BaseController):
         # repository, and one checkbox.  We get back two values for the file if
         # the checkbox is checked, and one otherwise.  It's not perfect, but it
         # works for now.
-        changeset = {}
-        for key in request.params:
-            input = request.params.getall(key)
-            if len(input) != 2:
-                continue
-            if 'on' not in input or u'on' not in input:
-                continue
-            if input[1] == 'on' or input[1] == u'on':
-                input.pop()
-            repo = input.pop()
-            changeset[repo] = changeset.get(repo, {})
-            changeset[repo][key] = True
-
         message = request.params['message']
         if not message:
             redirect(url.current(action='index'))
         for repo, root in self.repositories:
-            if root not in changeset:
+            if root not in request.params:
                 continue
             repochroot = Chroot(repo.root)
             try:
-                files = (repochroot(path.join(repo.root, file)) for file in changeset[root])
+                files = (repochroot(path.join(repo.root, file)) for file in request.params.getall(root))
             except IOError:
                 error = 'Bad Filename'
-                redirect(url.current(action='index', error=error))
+                redirect(url(controller='dv', action='index', error=error))
+            self.ui.pushbuffer()
             commands.commit(self.ui, repo, message=message, logfile=None, *files)
+            output = self.ui.popbuffer()
         redirect(url.current(action='index'))
 
     @rest.dispatch_on(POST='_revert_confirmed')

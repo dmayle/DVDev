@@ -5,7 +5,7 @@
     \  (in the html is checkboxes, jquery hides them and does the clicking interface)\
     \ at the top, select all, select none, then commit or revert"
   estimate: 3 Hours
-  status: open
+  status: closed
   title: Improve Diff/Commit UI
 10c40a197814ddba776ea821c9a4b4b060d200f3:
   description: When your URL is for a wiki page that doesn't exist, present a create

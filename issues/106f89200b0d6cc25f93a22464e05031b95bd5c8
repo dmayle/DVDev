@@ -1,4 +1,5 @@
-comment: Now we have revert confirmation
+comment: We had some problems with duplicated filenames (between repositories), should
+  be fixed now...
 description: "Add per file revert buttons to the diff/commit page\r\nBetter yet, checkboxes,\
   \ and the ability to revert or commit just the checked files - Using jquery, we\
   \ should click the whole diff and use color for checked or not checked.  (in the\
