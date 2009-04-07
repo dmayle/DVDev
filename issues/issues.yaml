@@ -58,6 +58,7 @@
   description: Currently, launching DVDev requires a manual config process.  Create
     a command line to make this easier.
   estimate: 3 Days
+  group: Crawling Crawfish
   status: open
   title: Add command line for launching DVDev
 86f5632151da060b32852b52c0df7b8a02cb35d4:
@@ -98,5 +99,6 @@ e4f89685fc111b4055ef2e8c37ba9f43872390f2:
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
+  group: ''
   status: The current status of the ticket.
   title: A title for the ticket

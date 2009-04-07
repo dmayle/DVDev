@@ -1,4 +1,6 @@
-comment: Added autolaunch of the page, as well as some minor speed optimizations.
+comment: It was still too slow, had to make a speed hack (limiting repository names,
+  no data or sstore).  Won't close it because I still need '--reload' and other command
+  line niceties...
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 3 Days

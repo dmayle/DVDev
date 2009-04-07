@@ -45,6 +45,9 @@ def build_repo_tree(root=os.getcwd(), maxdepth=2):
     """Build a tree structure that represents the loaded repositories."""
     if maxdepth < 1 or not os.path.isdir(root):
         return
+    if os.path.basename(root) in ['sstore', 'data']:
+        # Sorry guys, gotta do this for speed...
+        return
     # Check to see if the current directory is a repo.  If so, use that.
     myui = ui.ui()
     try:
@@ -53,8 +56,6 @@ def build_repo_tree(root=os.getcwd(), maxdepth=2):
         # I'm feeling lazy, so I think I'm gonna do this recursively with a
         # maxdepth. For each subdirectory of the current, check to see if it's
         # a repo.
-        if os.path.basename(root) in ['sstore', 'data']:
-            return
         return [build_repo_tree(subpath, maxdepth-1) for subpath in os.listdir(root)]
     except util.Abort:
         # I'm feeling lazy, so I think I'm gonna do this recursively with a
