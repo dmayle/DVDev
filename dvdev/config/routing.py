@@ -56,6 +56,9 @@ def make_map():
     map.connect('/login', controller='openiduser', action='login')
     map.connect('/success', controller='openiduser', action='success')
 
+    # Special mapping for revert confirmation
+    map.connect('/{repository}/dv/revert/*filepath', controller='dv', action='revert')
+
     map.connect('/', repository=repoid, controller=default_controller, action='index')
     map.connect('/{repository}', controller=default_controller, action='index')
     map.connect('/{repository}/{controller}', action='index')

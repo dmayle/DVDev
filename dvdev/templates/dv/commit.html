@@ -25,7 +25,7 @@
     <li py:for="diff in c.diffs" class="dvdev diff">
         <input name="${diff['filename']}" type="hidden" value="${diff['repository']}" />
         <input name="${diff['filename']}" type="checkbox" checked="checked" />
-        <a href="${url.current(action='revert', repo=diff['repository'], filename=diff['filename'])}">Revert</a>
+        <a href="${url.current(action='revert', repository=diff['repository'], filepath=diff['filename'])}">Revert</a>
         <ul py:if="diff['relatedissues']">
             <li py:for="issue in diff['relatedissues']"><a href="${url(repository=diff['relatedissues'][issue]['repo'], controller='issues', action='show', id=issue)}">Ticket: ${diff['relatedissues'][issue]['title']}</a></li>
         </ul>

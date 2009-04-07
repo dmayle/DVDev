@@ -25,8 +25,9 @@ from pygments.lexers import DiffLexer
 from pygments.formatters import HtmlFormatter
 from mercurial import commands, ui, hg, patch, cmdutil
 from re import compile
-from os import path
+from os import path, unlink
 from filesafe import Chroot
+from pylons.decorators import rest
 import yamltrak
 
 # Regex to pull the filename out of the diff header
@@ -38,8 +39,16 @@ class DvController(BaseController):
 
     def index(self):
         """Go through all of the repositories and list any uncommitted changes"""
+            
+        c.css = '<style type="text/css">%s</style>' % HtmlFormatter().get_style_defs('.highlight')
+        c.diffs = self._get_diffs()
+        return render('dv/commit.html')
+
+    def _get_diffs(self, repository=None, filepath=None):
         diffs = []
         for repo, root in self.repositories:
+            if repository and root != repository:
+                continue
             #commands.pull(thisui, user_repo)
 
             # The hg diff command returns the entire set of diffs as one big
@@ -54,6 +63,10 @@ class DvController(BaseController):
             for diff in patch.diff(repo, node1, node2, match=match, opts=patch.diffopts(self.ui)):
                 diffheader = diff.split('\n')[0]
                 filename = DIFF_FILE.match(diffheader).groups()[0]
+                if filepath and filepath == filename:
+                    return {'repository':root,
+                            'filename':filename,
+                            'diff': highlight(diff, DiffLexer(), HtmlFormatter())}
                 # Should I instantiate a single lexer and formatter and share them?
                 repodiffs.append({'repository':root,
                                'filename':filename,
@@ -73,10 +86,13 @@ class DvController(BaseController):
                                       'title':issues[issue]['title']}
                 diff['relatedissues'] = related
             diffs += repodiffs
-            
-        c.css = '<style type="text/css">%s</style>' % HtmlFormatter().get_style_defs('.highlight')
-        c.diffs = diffs
-        return render('dv/commit.html')
+        # Done collecting the diffs
+        if filepath:
+            # User wanted a specific diff, and we didn't find it.  This
+            # probably isn't the best exception, but it will have to do...
+            raise LookupError
+
+        return diffs
 
     def commit(self):
         """Use the list of files given by the user to commit to the repository"""
@@ -116,22 +132,66 @@ class DvController(BaseController):
             commands.commit(self.ui, repo, message=message, logfile=None, *files)
         redirect(url.current(action='index'))
 
-    def revert(self):
+    @rest.dispatch_on(POST='_revert_confirmed')
+    def revert(self, repository, filepath):
+        url = request.environ['routes.url']
+
+        if not repository or not filepath:
+            redirect(url.current(action='index'))
+
+        found = False
+        for repoobj, root in self.repositories:
+            if root == repository:
+                found = True
+                repo = repoobj
+                break
+        if not found:
+            # Better error handling? Raise a 404, I guess... Maybe handle this
+            # in lib/base ???
+            redirect(url.current(action='index'))
+
+        repochroot = Chroot(repo.root)
+        try:
+            fullfilepath = repochroot(path.join(repo.root, filepath))
+        except IOError:
+            error = 'Bad Filename'
+            redirect(url.current(action='index', error=error))
+        # repo.status() returns a tuple of lists, each lists containing the
+        # files containing a given status.  Those are:
+        # modified, added, removed, deleted, unknown, ignored, clean
+        statusmapper = dict(enumerate(['modified', 'added', 'removed', 'deleted', 'unknown', 'ignored', 'clean']))
+
+        c.added = False
+        statuses = repo.status()
+        for index, status in statusmapper.iteritems():
+            if filepath in statuses[index]:
+                c.status = status
+                if status == 'added':
+                    c.added = True
+                break
+
+        c.filepath = filepath
+        try:
+            c.diff = self._get_diffs(repository=repository, filepath=filepath)
+        except LookupError:
+            redirect(url.current(action='index', error='File not in repository'))
+            
+        c.css = '<style type="text/css">%s</style>' % HtmlFormatter().get_style_defs('.highlight')
+        return render('dv/revert.html')
+
+    def _revert_confirmed(self, repository, filepath):
         """Revert the given file to its pristine state."""
         # The variable passing schema we use means that we'll have problems
         # with a repository named 'on'.  We should look into a fix for that.
         # TODO Make this get require a post and spit back a confirmation form
         url = request.environ['routes.url']
 
-        repo = request.params['repo']
-        filename = request.params['filename']
-
-        if not repo or not filename:
+        if not repository or not filepath:
             redirect(url.current(action='index'))
 
         found = False
         for repoobj, root in self.repositories:
-            if root == repo:
+            if root == repository:
                 found = True
                 repo = repoobj
                 break
@@ -139,15 +199,29 @@ class DvController(BaseController):
             redirect(url.current(action='index'))
         repochroot = Chroot(repo.root)
         try:
-            filepath = repochroot(path.join(repo.root, filename))
+            fullfilepath = repochroot(path.join(repo.root, filepath))
         except IOError:
             error = 'Bad Filename'
             redirect(url.current(action='index', error=error))
         # repo.status() returns a tuple of lists, each lists containing the
         # files containing a given status.  Those are:
         # modified, added, removed, deleted, unknown, ignored, clean
-        modified, added, removed, deleted, unknown, ignored, clean = repo.status()
-        for status in [modified, added, removed, deleted]:
-            if filename in status:
-                commands.revert(self.ui, repo, filepath, rev='tip', date=None)
-        redirect(url.current(action='index'))
+        statusmapper = dict(enumerate(['modified', 'added', 'removed', 'deleted', 'unknown', 'ignored', 'clean']))
+
+        statuses = repo.status()
+        for index, status in statusmapper.iteritems():
+            if status not in ['modified', 'added', 'removed', 'deleted']:
+                # Unknown, ignored, and clean files can't be reverted...
+                if filepath in statuses[index]:
+                    c.status = status
+                    c.error = "Can't revert this file"
+                    return render('dv/revert.html')
+                continue
+            if filepath in statuses[index]:
+                commands.revert(self.ui, repo, fullfilepath, rev='tip', date=None)
+                if status == 'added' and request.params.get('remove'):
+                    unlink(fullfilepath)
+                redirect(url(repository=repository, controller='dv', action='index'))
+
+        c.error = 'Not found'
+        return render('dv/revert.html')
