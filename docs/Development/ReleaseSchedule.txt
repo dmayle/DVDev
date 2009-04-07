@@ -1,0 +1,25 @@
+Release Schedule
+================
+
+0.2 Crawling Crawfish
+---------------------
+This is going to be the first usable version of DVDev.  It will only be usable
+as a development tool, not yet for project hosting.  As such, the commmand line
+tools need to be in place, but the web based dashboard and merging won't be
+finished.
+
+0.3 Limping Lemur
+-----------------
+This will be the first version of DVDev usable for project hosting.  The
+multi-user story will be completed, as will the xxx.  It is not expected to be
+pretty yet.
+
+0.4 Stumbling Stork
+-------------------
+This is the first general release of DVDev.  It will have a polished UI and at
+least two themes, the default user theme, and the theme used by the DVDev.org
+website.
+
+0.5 Walking Wallabee
+--------------------
+A version to be proud of.  Rich project management, and better visualizations.
