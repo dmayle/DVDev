@@ -27,73 +27,81 @@
     <title>${c.project}: Open tickets</title>
     <script type="text/javascript">
       $(function(){
-      $('#dvdev-issuedb').tabs({selected: ${c.issues.keys().index(c.project)}});
-      $('ul.dvdev.issues li')
-        .draggable({revert: true});
-      $('fieldset.dvdev.group').droppable({
-        drop: function(ev, ui) {
-          // We receive drop events for letting go, so we have to filter
-          // those out.
-          var ticket = ui.draggable;
-          var oldgroup = $(ticket).parents('fieldset');
-          var newgroup = $(this);
-          if (oldgroup.children('legend').text() == newgroup.children('legend').text()) {
-            // This is a drag within the container.
-            return false;
-          }
-          var ticketid = ticket.get(0).id;
-          $(newgroup).children('ul').append(ticket);
-          var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
-          edit_url += ticketid;
-
-          // Now to dispatch this via ajax...
-          $.post(edit_url, {group: newgroup.children('legend').text()})
-
-          // Make sure the ui shows the state of the repository.
-          $('body').addClass('uncommitted');
-
-          // Need to find a way to add the diff/commit link
-
-        },
-        accept: 'ul.dvdev.issues li'
-      });
-      $('div.dvdev.toolset li')
-        .draggable({revert: true});
-      $('ul.dvdev.issues li').droppable({
-        drop: function(ev, ui) {
-          // We receive drop events for letting go, so we have to filter
-          // those out.
-          var tool = $(ui.draggable);
-          var ticket = $(this);
-          var ticketid = ticket.get(0).id;
-          var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
-          edit_url += ticketid;
-          if (tool.hasClass('status')) {
-            // Now to dispatch this via ajax...
-            var status = tool.get(0).id;
-            ticket.removeClass('high').removeClass('medium').removeClass('low');
-            ticket.addClass(status);
-            $.post(edit_url, {priority: status})
-          } else if (tool.hasClass('close')) {
-            var comments = prompt('Enter closing comments');
-            if (!comments || comments.length == 0) {
+        $('#dvdev-issuedb').tabs({selected: ${c.issues.keys().index(c.project)}});
+        $('ul.dvdev.issues li')
+          .draggable({revert: true});
+        $('fieldset.dvdev.group').droppable({
+          drop: function(ev, ui) {
+            // We receive drop events for letting go, so we have to filter
+            // those out.
+            var ticket = ui.draggable;
+            var oldgroup = $(ticket).parents('fieldset');
+            var newgroup = $(this);
+            if (oldgroup.children('legend').text() == newgroup.children('legend').text()) {
+              // This is a drag within the container.
               return false;
             }
-            $.post(edit_url, {status: 'closed', comment: comments})
-            $(ticket).remove();
-          } else {
-            return false;
-          }
-
-
-          // Make sure the ui shows the state of the repository.
-          $('body').addClass('uncommitted');
-
-          // Need to find a way to add the diff/commit link
-
-        },
-        accept: 'div.dvdev.toolset li'
-      });
+            var ticketid = ticket.get(0).id;
+            $(newgroup).children('ul').append(ticket);
+            var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+            edit_url += ticketid;
+  
+            // Now to dispatch this via ajax...
+            $.post(edit_url, {group: newgroup.children('legend').text()})
+  
+            // Make sure the ui shows the state of the repository.
+            $('body').addClass('uncommitted');
+  
+            // Need to find a way to add the diff/commit link
+  
+          },
+          accept: 'ul.dvdev.issues li'
+        });
+        $('div.dvdev.toolset li')
+          .draggable({revert: true});
+        $('ul.dvdev.issues li').droppable({
+          drop: function(ev, ui) {
+            // We receive drop events for letting go, so we have to filter
+            // those out.
+            var tool = $(ui.draggable);
+            var ticket = $(this);
+            var ticketid = ticket.get(0).id;
+            var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+            edit_url += ticketid;
+            if (tool.hasClass('status')) {
+              // Now to dispatch this via ajax...
+              var status = tool.get(0).id;
+              ticket.removeClass('high').removeClass('medium').removeClass('low');
+              ticket.addClass(status);
+              $.post(edit_url, {priority: status})
+            } else if (tool.hasClass('close')) {
+              var comments = prompt('Enter closing comments');
+              if (!comments || comments.length == 0) {
+                return false;
+              }
+              $.post(edit_url, {status: 'closed', comment: comments})
+              $(ticket).remove();
+            } else {
+              return false;
+            }
+  
+  
+            // Make sure the ui shows the state of the repository.
+            $('body').addClass('uncommitted');
+  
+            // Need to find a way to add the diff/commit link
+  
+          },
+          accept: 'div.dvdev.toolset li'
+        });
+        /*
+        There are some serious interaction issues between this code and my styling.
+        $('ul.dvdev.issues li').resizable({
+          grid: 10,
+          animate: true,
+          aspectRatio: true
+        });
+        */
       });
     </script>
     <style type="text/css">

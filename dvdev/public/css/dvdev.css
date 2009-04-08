@@ -16,6 +16,13 @@ ul.dvdev.issues li {
     background-color: #fef49b;
     font-family: Helvetica, sans-serif;
 }
+/*
+.ui-resizable {
+    background-image: url(/resizecorner.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+*/
 ul.dvdev.issues li.unplanned {
     border-top: 1px solid black;
     background-image: url(/indexcard.png);
