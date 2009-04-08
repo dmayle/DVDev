@@ -164,6 +164,14 @@ e4f89685fc111b4055ef2e8c37ba9f43872390f2:
   priority: low
   status: open
   title: Add resize/reestimate using jquery
+edd0cb85f939a59bcba5cdb36668bd440daf3d1d:
+  description: The index page is of limited use, because the javascript assumes the
+    current repository
+  estimate: 1 Hour
+  group: 0.2 Crawling Crawfish
+  priority: high, medium, low
+  status: open
+  title: Javascript updating assumes repository
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
