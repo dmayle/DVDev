@@ -2,6 +2,6 @@ comment: The current comment on this ticket.
 description: A detailed description of this ticket.
 status: The current status of the ticket.
 estimate: A time estimate for completion
-group:
+group: unfiled
 priority: red, yellow, blue
 title: A title for the ticket
