@@ -135,3 +135,6 @@ class IssuesController(BaseController):
                 newissue[key] = request.params[key]
         yamltrak.edit_issue(repositories[repository], 'issues', newissue, id)
         redirect_to(action='show', id=id)
+
+    def burndown(self, repository, id):
+        pass
