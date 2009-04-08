@@ -1,4 +1,4 @@
-comment: Fixed formatting and add license text.
+comment: Fixing a template I broke
 description: Setup the navbars, and cleanup the url navigation.
 estimate: 1 Week
 group: Crawling Crawfish

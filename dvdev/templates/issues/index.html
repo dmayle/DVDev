@@ -109,7 +109,7 @@
         <li py:for="dbindex, issuedb in enumerate(c.issues)"><a href="#tabs-${dbindex}">${issuedb}</a></li>
       </ul>
       <div id="tabs-${dbindex}" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
-        <a href="${url.current(repository=issuedb, action='new')}">New Issue</a>
+        <a href="${url.current(repository=repo, action='new')}">New Issue</a>
         <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
           <legend py:if="group">${group}</legend>
           <ul class="dvdev issues">
