@@ -83,14 +83,14 @@ dc259c93c8699bd76b0c87ed48f5853a85c6973a:
   status: closed
   title: Fix issue index to select tab of current project
 dc9d9d721f9f96720426481a8677c93298cc83ee:
-  comment: Opening ticket
   description: Add color to the issue display (index and detail) to indicate status  Maybe
     a stop light for UI control?
   estimate: 3 Days
-  status: open
+  group: Crawling Crawfish
+  priority: high
+  status: closed
   title: Use color to display status
 e4f89685fc111b4055ef2e8c37ba9f43872390f2:
-  comment: Opening ticket
   description: Create an interface to resizing the estimates by resizing the ticket
     visually.  Maybe a slider in the detail view, as well
   estimate: 2 days
@@ -100,5 +100,6 @@ skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
   group: unfiled
+  priority: The ticket priority.
   status: The current status of the ticket.
   title: A title for the ticket

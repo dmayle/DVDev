@@ -21,22 +21,62 @@
                 var oldgroup = $(ticket).parents('fieldset');
                 var newgroup = $(this);
                 if (oldgroup.children('legend').text() == newgroup.children('legend').text()) {
-                    // This is a drage within the container.
+                    // This is a drag within the container.
                     return false;
                 }
                 var ticketid = ticket.get(0).id;
                 $(newgroup).children('ul').append(ticket);
                 var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
                 edit_url += ticketid;
-                $.post(edit_url, {group: newgroup.children('legend').text()})
-                $('body').addClass('uncommitted');
 
                 // Now to dispatch this via ajax...
+                $.post(edit_url, {group: newgroup.children('legend').text()})
+
+                // Make sure the ui shows the state of the repository.
+                $('body').addClass('uncommitted');
+
+                // Need to find a way to add the diff/commit link
+
             },
             accept: 'ul.dvdev.issues li'
         });
-        $('ul.dvdev.toolset li')
+        $('div.dvdev.toolset li')
             .draggable({revert: true});
+        $('ul.dvdev.issues li').droppable({
+            drop: function(ev, ui) {
+                // We receive drop events for letting go, so we have to filter
+                // those out.
+                var tool = $(ui.draggable);
+                var ticket = $(this);
+                var ticketid = ticket.get(0).id;
+                var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+                edit_url += ticketid;
+                if (tool.hasClass('status')) {
+                    // Now to dispatch this via ajax...
+                    var status = tool.get(0).id;
+                    ticket.removeClass('high').removeClass('medium').removeClass('low');
+                    ticket.addClass(status);
+                    $.post(edit_url, {priority: status})
+                } else if (tool.hasClass('close')) {
+                    var comments = prompt('Enter closing comments');
+                    if (!comments || comments.length == 0) {
+                        return false;
+                    }
+                    $.post(edit_url, {status: 'closed', comment: comments})
+                    $(ticket).remove();
+                } else {
+                    return false;
+                }
+
+
+                // Make sure the ui shows the state of the repository.
+                $('body').addClass('uncommitted');
+
+                // Need to find a way to add the diff/commit link
+
+            },
+            accept: 'div.dvdev.toolset li'
+        });
       });
     </script>
     <style type="text/css">
@@ -62,7 +102,7 @@
             <legend py:if="group">${group}</legend>
             <ul class="dvdev issues">
                 <py:for each="issueid, issue in issues.iteritems()">
-                  <li id="${issueid}" class="${issue.get('estimate',{}).get('scale')}"><a href="${url.current(repository=repo, action='show',id=issueid)}">${issueid[:12]}</a><p>${issue.get('title')}</p><p class="dvdev estimate">${issue.get('estimate',{}).get('text')}</p></li>
+                  <li id="${issueid}" class="${issue.get('estimate',{}).get('scale')} ${issue.get('priority', 'high')}"><a href="${url.current(repository=repo, action='show',id=issueid)}">${issueid[:12]}</a><p>${issue.get('title')}</p><p class="dvdev estimate">${issue.get('estimate',{}).get('text')}</p></li>
                 </py:for>
             </ul>
         </fieldset>
@@ -70,9 +110,10 @@
 </div>
 <div class="dvdev toolset">
     <ul>
-        <li id="high">High Priority</li>
-        <li id="medium">Medium Priority</li>
-        <li id="low">Low Priority</li>
+        <li class="status" id="high">High Priority</li>
+        <li class="status" id="medium">Medium Priority</li>
+        <li class="status" id="low">Low Priority</li>
+        <li class="close">Close ticket</li>
     </ul>
 </div>
 

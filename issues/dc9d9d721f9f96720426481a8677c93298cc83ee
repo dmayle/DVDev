@@ -1,6 +1,8 @@
-comment: Opening ticket
+comment: Added it, along with working UI
 description: Add color to the issue display (index and detail) to indicate status  Maybe
   a stop light for UI control?
 estimate: 3 Days
-status: open
+group: Crawling Crawfish
+priority: high
+status: closed
 title: Use color to display status

@@ -29,6 +29,18 @@ ul.dvdev.issues li.long {
     width: 210px;
     min-height: 210px;
 }
+ul.dvdev.issues li.high {
+    border-top: 10px solid #fcb2af;
+    background-color: #ffc7c8;
+}
+ul.dvdev.issues li.medium {
+    border-top: 10px solid #feea3d;
+    background-color: #fef49b;
+}
+ul.dvdev.issues li.low {
+    border-top: 10px solid #87f2fc;
+    background-color: #aef4fe;
+}
 div.dvdev.issue {
     background-color: #fff;
     border: 1px solid black;
