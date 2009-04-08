@@ -1,5 +1,7 @@
-comment: Opening ticket
+comment: Adding javascript libraries
 description: Use flot to add burndown charts to issue groups
 estimate: 2 Hours
+group: Crawling Crawfish
+priority: high, medium, low
 status: open
 title: Add burndown charts.

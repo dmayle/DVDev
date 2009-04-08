@@ -1,7 +1,8 @@
 066f5666130634b91fbc5bbde1e64eed5ef2d31f:
-  comment: Opening ticket
   description: Use flot to add burndown charts to issue groups
   estimate: 2 Hours
+  group: Crawling Crawfish
+  priority: high, medium, low
   status: open
   title: Add burndown charts.
 106f89200b0d6cc25f93a22464e05031b95bd5c8:
