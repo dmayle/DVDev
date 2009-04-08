@@ -40,7 +40,7 @@ ul.dvdev.issues li.high {
     border-top: 10px solid #fcb2af;
     background-color: #ffc7c8;
 }
-ul.dvdev.issues li.medium {
+ul.dvdev.issues li.normal {
     border-top: 10px solid #feea3d;
     background-color: #fef49b;
 }
@@ -117,7 +117,7 @@ div.dvdev.toolset li#high {
     border-top: 10px solid #fcb2af;
     background-color: #ffc7c8;
 }
-div.dvdev.toolset li#medium {
+div.dvdev.toolset li#normal {
     border-top: 10px solid #feea3d;
     background-color: #fef49b;
 }

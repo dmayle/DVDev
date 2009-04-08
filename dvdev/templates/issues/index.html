@@ -71,7 +71,7 @@
             if (tool.hasClass('status')) {
               // Now to dispatch this via ajax...
               var status = tool.get(0).id;
-              ticket.removeClass('high').removeClass('medium').removeClass('low');
+              ticket.removeClass('high').removeClass('normal').removeClass('low');
               ticket.addClass(status);
               $.post(edit_url, {priority: status})
             } else if (tool.hasClass('close')) {
@@ -131,7 +131,7 @@
     <div class="dvdev toolset">
       <ul>
         <li class="status" id="high">High Priority</li>
-        <li class="status" id="medium">Medium Priority</li>
+        <li class="status" id="normal">Normal Priority</li>
         <li class="status" id="low">Low Priority</li>
         <li class="close">Close ticket</li>
       </ul>

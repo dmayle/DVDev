@@ -3,5 +3,5 @@ description: A detailed description of this ticket.
 status: The current status of the ticket.
 estimate: A time estimate for completion
 group: unfiled
-priority: high, medium, low
+priority: high, normal, low
 title: A title for the ticket

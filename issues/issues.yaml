@@ -141,7 +141,7 @@ d99b678b9af5d5c7bcc5502b06f0fb65c271c16e:
   estimate: 15 Minutes.
   group: 0.2 Crawling Crawfish
   priority: high
-  status: open
+  status: closed
   title: Make priority high, normal, low
 dc259c93c8699bd76b0c87ed48f5853a85c6973a:
   description: The selected tab is always the first project
