@@ -29,10 +29,14 @@
                 var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
                 edit_url += ticketid;
                 $.post(edit_url, {group: newgroup.children('legend').text()})
+                $('body').addClass('uncommitted');
 
                 // Now to dispatch this via ajax...
-            }
+            },
+            accept: 'ul.dvdev.issues li'
         });
+        $('ul.dvdev.toolset li')
+            .draggable({revert: true});
       });
     </script>
     <style type="text/css">
