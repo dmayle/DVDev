@@ -1,7 +1,7 @@
-comment: Fixing a template I broke
+comment: Ticket too vague, original intentions all ready accomplished
 description: Setup the navbars, and cleanup the url navigation.
 estimate: 1 Week
 group: 0.2 Crawling Crawfish
 priority: green, red, or black
-status: open
+status: closed
 title: Clean up the html

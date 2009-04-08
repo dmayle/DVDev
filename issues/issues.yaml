@@ -55,7 +55,7 @@
   estimate: 1 Week
   group: 0.2 Crawling Crawfish
   priority: green, red, or black
-  status: open
+  status: closed
   title: Clean up the html
 44da23e913408c1ae3f62afede51aef6493a9f7a:
   description: We need ticket groups to organize the work, to some day have a sense
