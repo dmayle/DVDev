@@ -1,0 +1,7 @@
+comment: Opening ticket
+description: Fix adding of tickets to use the 'newticket' skeleton
+estimate: 1 Hour
+group: 0.2 Crawling Crawfish
+priority: high, medium, low
+status: open
+title: Make adding ticket easier

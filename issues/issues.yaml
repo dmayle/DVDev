@@ -102,6 +102,13 @@
   priority: low
   status: open
   title: How to host this on dreamhost doc
+984c2c61b544b2154cd567f4fa9174f270fad2c4:
+  description: Fix adding of tickets to use the 'newticket' skeleton
+  estimate: 1 Hour
+  group: 0.2 Crawling Crawfish
+  priority: high, medium, low
+  status: open
+  title: Make adding ticket easier
 a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   description: Give a lightning talk at Pycon about DVDev
   estimate: 3 Minutes
