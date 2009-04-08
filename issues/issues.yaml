@@ -8,7 +8,7 @@
 066f5666130634b91fbc5bbde1e64eed5ef2d31f:
   description: Use flot to add burndown charts to issue groups
   estimate: 2 Hours
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
   priority: high, medium, low
   status: open
   title: Add burndown charts.
@@ -25,7 +25,7 @@
   description: When your URL is for a wiki page that doesn't exist, present a create
     this page stub
   estimate: 3 hours
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
   priority: green, red, or black
   status: open
   title: Create the form for adding wiki pages
@@ -46,14 +46,14 @@
   description: DVDev is littering .orig files, I suspect it has to do with the diffs...  Remove
     them
   estimate: 1 Hour
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
   priority: high, medium, low
   status: open
   title: Remove littered .orig files
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
   description: Setup the navbars, and cleanup the url navigation.
   estimate: 1 Week
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
   priority: green, red, or black
   status: open
   title: Clean up the html
@@ -90,7 +90,8 @@
   description: Currently, launching DVDev requires a manual config process.  Create
     a command line to make this easier.
   estimate: 3 Days
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
+  priority: green, red, or black
   status: open
   title: Add command line for launching DVDev
 86f5632151da060b32852b52c0df7b8a02cb35d4:
@@ -128,7 +129,7 @@ e4f89685fc111b4055ef2e8c37ba9f43872390f2:
   description: Create an interface to resizing the estimates by resizing the ticket
     visually.  Maybe a slider in the detail view, as well
   estimate: 2 days
-  group: Crawling Crawfish
+  group: 0.2 Crawling Crawfish
   priority: low
   status: open
   title: Add resize/reestimate using jquery

@@ -1,7 +1,7 @@
 comment: Fixing a template I broke
 description: Setup the navbars, and cleanup the url navigation.
 estimate: 1 Week
-group: Crawling Crawfish
+group: 0.2 Crawling Crawfish
 priority: green, red, or black
 status: open
 title: Clean up the html
