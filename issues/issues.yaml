@@ -36,10 +36,11 @@
   status: closed
   title: Turn on syntax highlighting in the source browser
 19ddecdf9fa96e69e0458341a3b43cc66ac78f9f:
-  comment: Opening ticket
   description: DVDev is littering .orig files, I suspect it has to do with the diffs...  Remove
     them
   estimate: 1 Hour
+  group: Crawling Crawfish
+  priority: high, medium, low
   status: open
   title: Remove littered .orig files
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:

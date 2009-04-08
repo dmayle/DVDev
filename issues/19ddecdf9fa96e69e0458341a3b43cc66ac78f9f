@@ -2,5 +2,7 @@ comment: Opening ticket
 description: DVDev is littering .orig files, I suspect it has to do with the diffs...  Remove
   them
 estimate: 1 Hour
+group: Crawling Crawfish
+priority: high, medium, low
 status: open
 title: Remove littered .orig files
