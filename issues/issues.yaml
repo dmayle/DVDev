@@ -11,6 +11,8 @@
   description: When your URL is for a wiki page that doesn't exist, present a create
     this page stub
   estimate: 3 hours
+  group: Crawling Crawfish
+  priority: green, red, or black
   status: open
   title: Create the form for adding wiki pages
 12b1eac0ef3d0d1638bc811a61aa384f5d5c5f99:
@@ -40,6 +42,8 @@
   description: Add a project dashboard that gives incomers directions as to where
     to go
   estimate: 1 Week
+  group: unfiled
+  priority: low
   status: open
   title: Add support for a project dashboard
 4b5d33fd650931f9ecd2f3b41852adad0d82dfcc:
@@ -52,6 +56,8 @@
   description: Get help turning the meritocracy proof of concept into a functioning
     repoze.what plugin.
   estimate: ''
+  group: unfiled
+  priority: low
   status: open
   title: Get help creating a repoze.what plugin for meritocracy
 77346645eace08324590f222708c4a37d082efa4:
@@ -65,6 +71,8 @@
   description: Give detailed docs on how to host this on dreamhost.  Also post this
     to dreamhost wiki.
   estimate: 1 Day
+  group: unfiled
+  priority: low
   status: open
   title: How to host this on dreamhost doc
 a36b42ed967e40d8dde931f12a66eae2d30f8c42:
@@ -94,6 +102,8 @@ e4f89685fc111b4055ef2e8c37ba9f43872390f2:
   description: Create an interface to resizing the estimates by resizing the ticket
     visually.  Maybe a slider in the detail view, as well
   estimate: 2 days
+  group: unfiled
+  priority: low
   status: open
   title: Add resize/reestimate using jquery
 skeleton:

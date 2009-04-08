@@ -2,6 +2,7 @@ comment: Just stubbing it out
 description: Add a project dashboard that gives incomers directions as to where to
   go
 estimate: 1 Week
-priority: green, red, or black
+group: unfiled
+priority: low
 status: open
 title: Add support for a project dashboard
