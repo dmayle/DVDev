@@ -11,8 +11,28 @@
     <script type="text/javascript">
       $(function(){
         $('#dvdev-issuedb').tabs({selected: ${c.issues.keys().index(c.project)}});
-        $('ul.dvdev.issues')
-            .sortable();
+        $('ul.dvdev.issues li')
+            .draggable({revert: true});
+        $('fieldset.dvdev.group').droppable({
+            drop: function(ev, ui) {
+                // We receive drop events for letting go, so we have to filter
+                // those out.
+                var ticket = ui.draggable;
+                var oldgroup = $(ticket).parents('fieldset');
+                var newgroup = $(this);
+                if (oldgroup.children('legend').text() == newgroup.children('legend').text()) {
+                    // This is a drage within the container.
+                    return false;
+                }
+                var ticketid = ticket.get(0).id;
+                $(newgroup).children('ul').append(ticket);
+                var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+                edit_url += ticketid;
+                $.post(edit_url, {group: newgroup.children('legend').text()})
+
+                // Now to dispatch this via ajax...
+            }
+        });
       });
     </script>
     <style type="text/css">
@@ -30,16 +50,26 @@
 </div>
 <div id="dvdev-issuedb">
     <ul>
-        <li py:for="issuedb in enumerate(c.issues)"><a href="#tabs-${issuedb[0]}">${issuedb[1]}</a></li>
+        <li py:for="dbindex, issuedb in enumerate(c.issues)"><a href="#tabs-${dbindex}">${issuedb}</a></li>
     </ul>
-    <div id="tabs-${issuedb[0]}" py:for="issuedb in enumerate(c.issues)">
-        <a href="${url.current(repository=issuedb[1], action='new')}">New Issue</a>
-        <ul class="dvdev issues">
-            <py:for each="issue in c.issues[issuedb[1]].iteritems()">
-              <li class="${issue[1]['estimate']['scale']}"><a href="${url.current(repository=issuedb[1], action='show',id=issue[0])}">${issue[0][:12]}</a><p>${issue[1]['title']}</p><p class="dvdev estimate">${issue[1]['estimate']['text']}</p></li>
-            </py:for>
-        </ul>
+    <div id="tabs-${dbindex}" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
+        <a href="${url.current(repository=issuedb, action='new')}">New Issue</a>
+        <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
+            <legend py:if="group">${group}</legend>
+            <ul class="dvdev issues">
+                <py:for each="issueid, issue in issues.iteritems()">
+                  <li id="${issueid}" class="${issue.get('estimate',{}).get('scale')}"><a href="${url.current(repository=repo, action='show',id=issueid)}">${issueid[:12]}</a><p>${issue.get('title')}</p><p class="dvdev estimate">${issue.get('estimate',{}).get('text')}</p></li>
+                </py:for>
+            </ul>
+        </fieldset>
     </div>
+</div>
+<div class="dvdev toolset">
+    <ul>
+        <li id="high">High Priority</li>
+        <li id="medium">Medium Priority</li>
+        <li id="low">Low Priority</li>
+    </ul>
 </div>
 
 </body></html>

@@ -75,3 +75,35 @@ li.dvdev.diff {
     padding: 5px;
     margin: 10px;
 }
+div.dvdev.toolset {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+}
+div.dvdev.toolset li {
+    width: 80px;
+    min-height: 40px;
+    border: 1px solid #000;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
+    _height: 40px;
+}
+div.dvdev.toolset li#high {
+    /* First one is the titlebar */
+    border-top: 10px solid #fcb2af;
+    background-color: #ffc7c8;
+}
+div.dvdev.toolset li#medium {
+    border-top: 10px solid #feea3d;
+    background-color: #fef49b;
+}
+div.dvdev.toolset li#low {
+    /* First one is the titlebar */
+    border-top: 10px solid #87f2fc;
+    background-color: #aef4fe;
+}

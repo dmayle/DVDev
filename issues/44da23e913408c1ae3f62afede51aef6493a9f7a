@@ -1,6 +1,8 @@
-comment: Opening ticket
+comment: Working version, along with nice drag/drop UI
 description: We need ticket groups to organize the work, to some day have a sense
   of completion
 estimate: 1 Day
-status: open
+group: Crawling Crawfish
+priority: red, yellow, blue
+status: closed
 title: Add support for ticket groupings

@@ -19,6 +19,7 @@ import logging
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to, redirect
 from pylons.decorators import rest
+from pylons.decorators import jsonify
 
 from dvdev.lib.base import BaseController, render
 
@@ -42,7 +43,14 @@ class IssuesController(BaseController):
         # Read the config to find the repository source...
         # Need to figure out the ini file, the issues directory
         # I think YAMLTrak should be a package, not a webapp...
-        c.issues = yamltrak.issues(repositories.values(), 'issues')
+        allissues = yamltrak.issues(repositories.values(), 'issues')
+        c.issues = {}
+        for repo, issuedb in allissues.iteritems():
+            c.issues[repo] = {}
+            for issueid, issue in issuedb.iteritems():
+                group = issue.get('group', 'unfiled')
+                c.issues[repo][group] = c.issues[repo].get(group, {})
+                c.issues[repo][group][issueid] = issue
         return render('issues/index.html')
 
     def create(self, repository):
@@ -109,11 +117,21 @@ class IssuesController(BaseController):
     @rest.dispatch_on(GET='show')
     def edit(self, repository, id, format='html'):
         """GET /issues/id/edit: Form to edit an existing item"""
-        # url('edit_issue', id=ID)
+        # In order to to properly handle partial completion, we'll start by
+        # filling out any features from the existing ticket if the key is in
+        # the skeleton.  Next we fill in any fields from the skeleton not in
+        # the ticket with the default values.  Finally, for each value in the
+        # request that has a corresponding key in the skeleton, we'll update
+        # the ticket.
+        oldissue = yamltrak.issue(repositories[repository], 'issues',id, detail=False)
         skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
-        issue = {}
+        newissue = {}
         for key in skeleton[0]['data']:
+            if key in oldissue[0]['data']:
+                newissue[key] = oldissue[0]['data'][key]
+            else:
+                newissue[key] = skeleton[0]['data'][key]
             if key in request.params:
-                issue[key] = request.params[key]
-        yamltrak.edit_issue(repositories[repository], 'issues', issue, id)
+                newissue[key] = request.params[key]
+        yamltrak.edit_issue(repositories[repository], 'issues', newissue, id)
         redirect_to(action='show', id=id)

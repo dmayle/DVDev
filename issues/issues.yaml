@@ -30,11 +30,11 @@
   status: open
   title: Clean up the html
 44da23e913408c1ae3f62afede51aef6493a9f7a:
-  comment: Opening ticket
   description: We need ticket groups to organize the work, to some day have a sense
     of completion
   estimate: 1 Day
-  status: open
+  group: Crawling Crawfish
+  status: closed
   title: Add support for ticket groupings
 49f5b1a6cc0405669ad915bf44258fbef4dd4cff:
   description: Add a project dashboard that gives incomers directions as to where
@@ -99,6 +99,6 @@ e4f89685fc111b4055ef2e8c37ba9f43872390f2:
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
-  group: ''
+  group: unfiled
   status: The current status of the ticket.
   title: A title for the ticket
