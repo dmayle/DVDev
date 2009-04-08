@@ -1,3 +1,10 @@
+01ba995d94a725fdc55eefa38e6889353b17b0d4:
+  description: Permissions checks, initial version of meritocracy, etc.
+  estimate: A time estimate for completion
+  group: 0.3 Limping Lemur
+  priority: high, medium, low
+  status: open
+  title: Get multi-user going
 066f5666130634b91fbc5bbde1e64eed5ef2d31f:
   description: Use flot to add burndown charts to issue groups
   estimate: 2 Hours

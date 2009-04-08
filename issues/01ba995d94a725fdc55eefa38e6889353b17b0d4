@@ -1,0 +1,7 @@
+comment: Opening ticket
+description: Permissions checks, initial version of meritocracy, etc.
+estimate: A time estimate for completion
+group: 0.3 Limping Lemur
+priority: high, medium, low
+status: open
+title: Get multi-user going
