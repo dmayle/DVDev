@@ -10,7 +10,7 @@
   estimate: 2 Hours
   group: 0.2 Crawling Crawfish
   priority: high, medium, low
-  status: open
+  status: closed
   title: Add burndown charts.
 106f89200b0d6cc25f93a22464e05031b95bd5c8:
   description: "Add per file revert buttons to the diff/commit page\r\nBetter yet,\

@@ -138,6 +138,5 @@ class IssuesController(BaseController):
 
     def burndown(self, repository, id):
         c.group = id
-        c.groupdata = [ [[0,0], [1, 1]] ]
-        c.newgroupdata = yamltrak.burndown(repository, id)
+        c.groupdata = yamltrak.burndown(repository, id)
         return render('issues/burndown.html')

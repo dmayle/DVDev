@@ -1,7 +1,7 @@
-comment: Initial implementation, seems broken
+comment: Yay! Working Burndown Charts!
 description: Use flot to add burndown charts to issue groups
 estimate: 2 Hours
 group: 0.2 Crawling Crawfish
 priority: high, medium, low
-status: open
+status: closed
 title: Add burndown charts.
