@@ -119,3 +119,8 @@ div.dvdev.toolset li#low {
     border-top: 10px solid #87f2fc;
     background-color: #aef4fe;
 }
+div.dvdev.chart#burndownchart {
+    width: 600px;
+    height: 300px;
+    background-color: white;
+}

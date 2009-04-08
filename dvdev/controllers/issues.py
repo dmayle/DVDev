@@ -137,4 +137,7 @@ class IssuesController(BaseController):
         redirect_to(action='show', id=id)
 
     def burndown(self, repository, id):
-        pass
+        c.group = id
+        c.groupdata = [ [[0,0], [1, 1]] ]
+        c.newgroupdata = yamltrak.burndown(repository, id)
+        return render('issues/burndown.html')

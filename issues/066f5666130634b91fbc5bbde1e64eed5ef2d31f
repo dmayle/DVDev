@@ -1,4 +1,4 @@
-comment: Stub out the code and template
+comment: Initial implementation, seems broken
 description: Use flot to add burndown charts to issue groups
 estimate: 2 Hours
 group: 0.2 Crawling Crawfish

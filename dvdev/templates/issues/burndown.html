@@ -25,45 +25,18 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>${c.project}: View/Edit ticket</title>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="/js/excanvas.pack.js"></script><![endif]-->
+    <script language="javascript" type="text/javascript" src="/js/jquery.flot.pack.js"></script>
     <script type="text/javascript">
       $(function(){
+        $.plot($('#burndownchart'), ${'%r' % c.groupdata}, {yaxis: { max: 1 }});
+        // ${'%r' % c.newgroupdata}
       });
     </script>
   </head>
   <body>
-    <h1 class="page_title">Issue: ${c.id}</h1>
-    <div class="dvdev issue">
-      <h2>${c.issue['title']}</h2>
-      <ul>
-        <li py:for="key in c.issue" py:if="key != 'title'">${key[0].upper() + key[1:]}: ${c.issue[key]}</li>
-      </ul>
-      <ul class="dvdev issuehistory">
-        <p py:if="c.uncommitted_diff">Uncommitted changes:</p>
-        <ul py:if="c.uncommitted_diff">
-          <li py:for="changeset in c.uncommitted_diff[0].iteritems()">Added: ${changeset[0]} with value ${changeset[1]}</li>
-          <li py:for="changeset in c.uncommitted_diff[1].iteritems()">Removed: ${changeset[0]} with value ${changeset[1]}</li>
-          <li py:for="changeset in c.uncommitted_diff[2].iteritems()">Changed: ${changeset[0]} from '${changeset[1][0]}' to '${changeset[1][1]}'</li>
-        </ul>
-        <li class="dvdev revision" py:for="version in c.versions">
-          <p>On ${version['date']}, ${version['user']} made the following changes: (<a href="/source/${c.project}/rev/${version['node']}">${version['node'][:12]}</a>)</p>
-          <ul py:if="version.get('diff')">
-            <li py:for="changeset in version['diff'][0].iteritems()">Added: ${changeset[0]} with value ${changeset[1]}</li>
-            <li py:for="changeset in version['diff'][1].iteritems()">Removed: ${changeset[0]} with value ${changeset[1]}</li>
-            <li py:for="changeset in version['diff'][2].iteritems()">Changed: ${changeset[0]} from '${changeset[1][0]}' to '${changeset[1][1]}'</li>
-          </ul>
-          <p>Linked files:</p>
-          <ul>
-            <li py:for="file in version['files']"><a href="/source/${c.project}/file/${version['node']}/${file}">${file}</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form action="${url.current(action='edit')}" method="POST">
-        <ul>
-          <li py:for="key in c.skeleton"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.issue.get(key) or c.skeleton[key]}</textarea></li>
-        </ul>
-        <input type="submit" value="Edit this ticket" />
-      </form>
-      <form action="${url.current(action='close')}" method="POST"><input type="submit" value="Close this ticket" /></form>
+    <h1 class="page_title">Group: ${c.group}</h1>
+    <div class="dvdev chart" id="burndownchart">
     </div>
   </body>
 </html>
