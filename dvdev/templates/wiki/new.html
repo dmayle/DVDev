@@ -1,34 +1,38 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+  "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude"
       lang="en">
-<xi:include href="../site.html" />
-<head>
+<!--
+ DVDev - Distributed Versioned Development - tools for Open Source Software
+ Copyright (C) 2009  Douglas Mayle
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as
+ published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+  <xi:include href="../site.html" />
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>${c.project}: Open tickets</title>
-    <script type="text/javascript">
-      $(function(){
-        $('#dvdev-issuedb').tabs();
-        $('ul.dvdev.issues li')
-            .draggable({revert: true});
-      });
-    </script>
-    <style type="text/css">
-.ui-tabs .ui-tabs-hide {
-     display: none;
-}
-</style>
-</head><body>
-
-<h1 class="page_title">Wiki</h1>
-
-<form method="POST">
-    <label for="page_text">Page markup</label>
-    <textarea name="page_text">${c.page_text}</textarea>
-    <input type="submit" value="Update Page" />
-</form>
-
-</body></html>
+  </head>
+  <body>
+    <h1 class="page_title">Wiki</h1>
+    <form method="POST">
+      <label for="page_text">Page markup</label>
+      <textarea name="page_text">${c.page_text}</textarea>
+      <input type="submit" value="Update Page" />
+    </form>
+  </body>
+</html>
 

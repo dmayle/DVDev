@@ -1,6 +1,7 @@
-comment: Fixed wiki routing
+comment: Fixed formatting and add license text.
 description: Setup the navbars, and cleanup the url navigation.
 estimate: 1 Week
+group: Crawling Crawfish
 priority: green, red, or black
 status: open
 title: Clean up the html

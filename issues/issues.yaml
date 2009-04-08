@@ -19,6 +19,8 @@
   description: Fix the setup.py and attach copyright headers to each of the source
     files to show off the license.
   estimate: 1 Hour
+  group: Crawling Crawfish
+  priority: medium
   status: closed
   title: Clarify the GNU Affero GPLv3 licensing terms.
 1326bd84624f2f133b290dd4989e7902954b248a:
@@ -29,6 +31,8 @@
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
   description: Setup the navbars, and cleanup the url navigation.
   estimate: 1 Week
+  group: Crawling Crawfish
+  priority: green, red, or black
   status: open
   title: Clean up the html
 44da23e913408c1ae3f62afede51aef6493a9f7a:
