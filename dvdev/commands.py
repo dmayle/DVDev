@@ -46,7 +46,8 @@ def build_repo_tree(root=os.getcwd(), maxdepth=2):
     if maxdepth < 1 or not os.path.isdir(root):
         return
     if os.path.basename(root) in ['sstore', 'data']:
-        # Sorry guys, gotta do this for speed...
+        # Sorry guys, gotta do this for speed... The next step is to check for
+        # .hg directories before trying to create the repo object.
         return
     # Check to see if the current directory is a repo.  If so, use that.
     myui = ui.ui()
