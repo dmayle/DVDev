@@ -170,7 +170,7 @@ edd0cb85f939a59bcba5cdb36668bd440daf3d1d:
   estimate: 1 Hour
   group: 0.2 Crawling Crawfish
   priority: high, medium, low
-  status: open
+  status: closed
   title: Javascript updating assumes repository
 skeleton:
   description: A detailed description of this ticket.

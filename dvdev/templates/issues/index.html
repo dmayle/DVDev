@@ -43,7 +43,9 @@
             }
             var ticketid = ticket.get(0).id;
             $(newgroup).children('ul').append(ticket);
-            var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+            var repository = $(ticket).parents('div.dvdev.repository').get(0).id.split('-')[1];
+            var edit_url = "${url(controller='issues', action='edit', repository='REPOSITORY', id='')}"
+            edit_url = edit_url.replace(/REPOSITORY/, repository);
             edit_url += ticketid;
   
             // Now to dispatch this via ajax...
@@ -66,7 +68,9 @@
             var tool = $(ui.draggable);
             var ticket = $(this);
             var ticketid = ticket.get(0).id;
-            var edit_url = "${url(controller='issues', action='edit', repository=c.project, id='')}"
+            var repository = $(ticket).parents('div.dvdev.repository').get(0).id.split('-')[1];
+            var edit_url = "${url(controller='issues', action='edit', repository='REPOSITORY', id='')}"
+            edit_url = edit_url.replace(/REPOSITORY/, repository);
             edit_url += ticketid;
             if (tool.hasClass('status')) {
               // Now to dispatch this via ajax...
@@ -114,9 +118,9 @@
     <h1 class="page_title">Issues</h1>
     <div id="dvdev-issuedb">
       <ul>
-        <li py:for="dbindex, issuedb in enumerate(c.issues)"><a href="#tabs-${dbindex}">${issuedb}</a></li>
+        <li py:for="dbindex, repo in enumerate(c.issues)"><a href="#tabs-${repo}">${repo}</a></li>
       </ul>
-      <div id="tabs-${dbindex}" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
+      <div id="tabs-${repo}" class="dvdev repository" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
         <a href="${url.current(repository=repo, action='new')}">New Issue</a>
         <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
           <legend py:if="group"><a href="${url(repository=repo, controller='issues', action='burndown', id=group)}">${group}</a></legend>

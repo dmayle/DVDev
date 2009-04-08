@@ -1,8 +1,8 @@
-comment: Opening ticket
+comment: Now it pulls the repo from the HTML
 description: The index page is of limited use, because the javascript assumes the
   current repository
 estimate: 1 Hour
 group: 0.2 Crawling Crawfish
 priority: high, medium, low
-status: open
+status: closed
 title: Javascript updating assumes repository
