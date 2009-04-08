@@ -1,3 +1,9 @@
+066f5666130634b91fbc5bbde1e64eed5ef2d31f:
+  comment: Opening ticket
+  description: Use flot to add burndown charts to issue groups
+  estimate: 2 Hours
+  status: open
+  title: Add burndown charts.
 106f89200b0d6cc25f93a22464e05031b95bd5c8:
   description: "Add per file revert buttons to the diff/commit page\r\nBetter yet,\
     \ checkboxes, and the ability to revert or commit just the checked files - Using\
