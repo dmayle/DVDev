@@ -1,8 +1,8 @@
-comment: Opening ticket
+comment: Useless ticket, it's too early to ticket 0.4
 description: We're limping along with some ugly stuff, let's get a designer to help
   us out
 estimate: 4 Weeks
 group: 0.4 Stumbling Stork
 priority: high, medium, low
-status: open
+status: closed
 title: Get a designer on this ugly thing

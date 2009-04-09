@@ -135,7 +135,7 @@ c032b2cf08ef7ad69b3774a7fe33ef9e832f0e2a:
   estimate: 4 Weeks
   group: 0.4 Stumbling Stork
   priority: high, medium, low
-  status: open
+  status: closed
   title: Get a designer on this ugly thing
 c149d4f9dbffe413bcc39cab14d51522ffa69ab0:
   description: Stupid traceback on IndexError
