@@ -21,7 +21,9 @@ from tempfile import NamedTemporaryFile
 from mercurial import hg, ui, util, commands
 from mercurial.error import RepoError
 from urllib2 import URLError
+import socket
 import webbrowser
+from threading import Timer
 from argparse import ArgumentParser
 
 def build_config():
@@ -94,6 +96,10 @@ def main():
         default=[os.getcwd()], help='List of repositories to serve. If left '\
         'blank, DVDev will search the current and subdirectories for '\
         'existing repositories.')
+    parser.add_argument(
+        '-p', '--port', type=int, default=4000, help='The port to serve on '\
+        '(by default: 4000).  If this port is in use, dvdev will try to '\
+        'randomly select an open port.')
     args = parser.parse_args()
     for index, repository in enumerate(args.repositories):
         if os.path.exists(repository):
@@ -121,6 +127,7 @@ def main():
             "local copy at %s" % (repository, destination)
             import sys
             sys.exit(1)
+        print "Cloned repository %s in local directory %s" % (repository, destination)
 
         # Update our repository list with the new local copy
         args.repositories[index] = destination
@@ -144,9 +151,29 @@ def main():
         'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
     app = make_app({'debug': 'true'}, **config)
-    port = 4000
-    webbrowser.open('http://localhost:%d/' % port)
-    serve(app, host='0.0.0.0', port=port)
+
+    def webhelper(url):
+        """\
+        Curry the webbrowser.open method so that we can cancel it with a
+        threaded timer."""
+        def _launch_closure():
+            webbrowser.open(url)
+        return _launch_closure
+
+    # Paste's httpserver doesn't return once it's started serving (which is
+    # pretty normal).  The only problem is that we don't know if it
+    # successfully captured the port unless it didn't return.  We don't want to
+    # open the user's webbrowser unless we're successfully serving, so it's
+    # sort of a chicken and egg problem.  We'll start a timer with a half
+    # second delay (forever in computer time) in another thread.  If the server
+    # returns, we'll cancel the timer, and try again.
+    safelaunch = Timer(0.5, webhelper('http://localhost:%d/' % args.port))
+    safelaunch.start()
+    try:
+        serve(app, host='0.0.0.0', port=args.port)
+    except socket.error, e:
+        safelaunch.cancel()
+        print "Unable to serve on port %d : Error message was: %s" % (args.port, e[1])
 
 if __name__ == '__main__':
     main()
