@@ -3,6 +3,6 @@ description: Groups should be sorted somehow, and unfiled should stand out as di
   from the rest of the groups
 estimate: 2 Hours
 group: 0.2 Crawling Crawfish
-priority: high, medium, low
+priority: normal
 status: open
 title: Group listing is haphazard

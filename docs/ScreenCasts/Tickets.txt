@@ -1,4 +1,9 @@
 Ticket Screencast
 =================
 
-Script.
+Scenario 1: Ease of use
+-----------------------
+
+To start out with, we'll easy_install dvdev, and launch it for a repository
+that already has a ticket database.  (Maybe we use a url so that it clones the repository for me?)
+In this scenario, we'll show how much easier it is to perform ticketing using DVDev.  

@@ -1,0 +1,8 @@
+comment: Opening ticket
+description: When you pass a URL as an argument to dvdev, it should clone the repository
+  and then start up
+estimate: 2 Hours
+group: 0.2 Crawling Crawfish
+priority: high, normal, low
+status: open
+title: URL on command line should trigger a clone of the repository.

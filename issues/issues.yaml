@@ -26,7 +26,7 @@
     this page stub
   estimate: 3 hours
   group: 0.2 Crawling Crawfish
-  priority: green, red, or black
+  priority: normal
   status: open
   title: Create the form for adding wiki pages
 12b1eac0ef3d0d1638bc811a61aa384f5d5c5f99:
@@ -47,7 +47,7 @@
     them
   estimate: 1 Hour
   group: 0.2 Crawling Crawfish
-  priority: high, medium, low
+  priority: normal
   status: open
   title: Remove littered .orig files
 3a39b548fbb53f13d763eb8570f43d37df15a5a7:
@@ -119,7 +119,7 @@ ab920c781f740baff2c7fc2ed988fc67814f2179:
     from the rest of the groups
   estimate: 2 Hours
   group: 0.2 Crawling Crawfish
-  priority: high, medium, low
+  priority: normal
   status: open
   title: Group listing is haphazard
 c032b2cf08ef7ad69b3774a7fe33ef9e832f0e2a:
@@ -172,6 +172,14 @@ edd0cb85f939a59bcba5cdb36668bd440daf3d1d:
   priority: high, medium, low
   status: closed
   title: Javascript updating assumes repository
+fdfdb279554b954ab77c22c85d1bb78d527bce4a:
+  description: When you pass a URL as an argument to dvdev, it should clone the repository
+    and then start up
+  estimate: 2 Hours
+  group: 0.2 Crawling Crawfish
+  priority: high, normal, low
+  status: open
+  title: URL on command line should trigger a clone of the repository.
 skeleton:
   description: A detailed description of this ticket.
   estimate: A time estimate for completion
