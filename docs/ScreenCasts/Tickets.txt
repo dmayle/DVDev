@@ -1,9 +1,49 @@
 Ticket Screencast
 =================
 
-Scenario 1: Ease of use
------------------------
+Scenario 1: Developer filing bug
+--------------------------------
 
-To start out with, we'll easy_install dvdev, and launch it for a repository
-that already has a ticket database.  (Maybe we use a url so that it clones the repository for me?)
-In this scenario, we'll show how much easier it is to perform ticketing using DVDev.  
+I'm using some open source software, and it has a bug, so I'll easy_install
+dvdev, and launch it for a repository that already has a ticket database.
+(Maybe we use a url so that it clones the repository for me?)  It autolaunches
+my web browser (I'll leave it open with no windows so that it happens quickly)
+and add a ticket using the jQuery dialog system (need to implement that). While
+I'm there, I edit a file to add a stub (def something: pass)
+
+Scenario 2: Picking out my work
+-------------------------------
+
+I'm starting my work for the day, so I navigate to my repository, and get an
+immediate view of the work to do.  I have a 3 Day high priority ticket, and a 1
+Hour normal priority ticket.  Since I only have a short time to work, I'll
+decide to start the lower priority ticket. (I pick out the ticket from scenario 1).
+
+Scenario 3: Fixing an open ticket
+---------------------------------
+
+Now I have a ticket I'm already working on, I go to the detail view, and I see
+that having committed the stub with ticket made it show up in the history view.
+I edit this file to provide the implementation.  I've just finished the
+changes, so I go to my Diff/Commit Screen and check out the changes.  I've only
+changed one file, so I'm presented with the associated ticket.  I update the
+comments, click on close, and commit my changes.
+
+Scenario 4: Planning a release
+------------------------------
+
+I've been watching this release, and I need to know how things are going.  I
+take a look at the burndown chart, and I see that it progressed normally, then
+stagnated, and is now progressing again.  Unfortunately, this will put me over
+deadline, so I need to react.  I go to the issues screen, I lower the priority
+on a ticket, and I push one of the tickets back to another release.
+
+
+Highlight:
+ * Unplanned tickets
+ * Reprioritize and regroup tickets
+ * Burndown charts
+ * Ticket creation
+ * Related tickets
+ * Detailed ticket view
+ * Not needing to link the tickets with text.
