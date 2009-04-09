@@ -1,4 +1,4 @@
-comment: Opening ticket
+comment: Much better, I'd like to avoid the redirect, though.
 description: Fix adding of tickets to use the 'newticket' skeleton
 estimate: 1 Hour
 group: 0.2 Crawling Crawfish

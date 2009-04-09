@@ -32,10 +32,10 @@
   </head>
   <body>
     <h1 class="page_title">New Issue</h1>
-    <div id="dvdev issue">
+    <div id="addissue">
       <form action="${url.current(action='new')}" method="POST">
         <ul>
-          <li py:for="key in c.skeleton" py:if="key not in ['status', 'comment']"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.skeleton[key]}</textarea></li>
+          <li py:for="key in c.orderedkeys"><label for="${key}">${key[0].upper() + key[1:]}:</label><textarea name="${key}">${c.skeleton[key]}</textarea></li>
         </ul>
         <input type="submit" value="Add Ticket" />
       </form>

@@ -60,8 +60,22 @@ class IssuesController(BaseController):
     @rest.dispatch_on(POST='_add_new')
     def new(self, repository, format='html'):
         """GET /issues/new: Form to create a new item"""
-        skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
+        skeleton = yamltrak.issue(repositories[repository], 'issues', 'newticket', detail=False)
+        if not skeleton:
+            # If there is no newticket skeleton, just use the default skeleton.
+            skeleton = yamltrak.issue(repositories[repository], 'issues', 'skeleton', detail=False)
         c.skeleton = skeleton[0]['data']
+        keys = c.skeleton.keys()
+        orderedkeys = []
+        if 'title' in keys:
+            keys.remove('title')
+            orderedkeys.append('title')
+        if 'description' in keys:
+            keys.remove('description')
+            orderedkeys.append('description')
+        orderedkeys += keys
+        c.orderedkeys = orderedkeys
+        
         return render('issues/add.html')
         # url('new_issue')
 

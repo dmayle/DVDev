@@ -85,6 +85,12 @@
               }
               $.post(edit_url, {status: 'closed', comment: comments})
               $(ticket).remove();
+            } else if (tool.hasClass('comment')) {
+              var comments = prompt('Enter comments');
+              if (!comments || comments.length == 0) {
+                return false;
+              }
+              $.post(edit_url, {comment: comments})
             } else {
               return false;
             }
@@ -97,6 +103,15 @@
   
           },
           accept: 'div.dvdev.toolset li'
+        });
+        $('a.dvdev.newticket').click(function(ev) {
+          $.get($(this).attr('href'), {}, function(data) {
+            // We pull in the actual add dialog page, append it to a hidden element, then pull out the form and use it as a dialog.
+            $('#dialog').hide().append(data);
+            $('#addissue').dialog({modal: true, width: 500});
+            return;
+          });
+          return false;
         });
         /*
         There are some serious interaction issues between this code and my styling.
@@ -120,7 +135,7 @@
         <li py:for="dbindex, repo in enumerate(c.issues)"><a href="#tabs-${repo}">${repo}</a></li>
       </ul>
       <div id="tabs-${repo}" class="dvdev repository" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
-        <a href="${url.current(repository=repo, action='new')}">New Issue</a>
+        <a class="dvdev newticket" href="${url.current(repository=repo, action='new')}">New Issue</a>
         <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
           <legend py:if="group"><a href="${url(repository=repo, controller='issues', action='burndown', id=group)}">${group}</a></legend>
           <ul class="dvdev issues">
@@ -137,8 +152,10 @@
         <li class="status" id="normal">Normal Priority</li>
         <li class="status" id="low">Low Priority</li>
         <li class="close">Close ticket</li>
+        <li class="comment">Add comment</li>
       </ul>
     </div>
+    <div id="dialog"></div>
   </body>
 </html>
 
