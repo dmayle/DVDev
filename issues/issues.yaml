@@ -113,7 +113,7 @@
   description: Fix adding of tickets to use the 'newticket' skeleton
   estimate: 1 Hour
   group: 0.2 Crawling Crawfish
-  priority: high, medium, low
+  priority: normal
   status: open
   title: Make adding ticket easier
 a36b42ed967e40d8dde931f12a66eae2d30f8c42:
