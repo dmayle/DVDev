@@ -2,7 +2,7 @@ comment: Just stubbing it out
 description: Add a project dashboard that gives incomers directions as to where to
   go
 estimate: 1 Week
-group: unfiled
+group: 0.3 Limping Lemur
 priority: low
 status: open
 title: Add support for a project dashboard
