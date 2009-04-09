@@ -185,7 +185,7 @@ fdfdb279554b954ab77c22c85d1bb78d527bce4a:
   estimate: 2 Hours
   group: 0.2 Crawling Crawfish
   priority: high, normal, low
-  status: open
+  status: closed
   title: URL on command line should trigger a clone of the repository.
 skeleton:
   description: A detailed description of this ticket.

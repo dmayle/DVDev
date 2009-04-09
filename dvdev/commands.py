@@ -18,9 +18,11 @@ import os
 from dvdev.config.middleware import make_app
 from paste.httpserver import serve
 from tempfile import NamedTemporaryFile
-from mercurial import hg, ui, util
+from mercurial import hg, ui, util, commands
 from mercurial.error import RepoError
+from urllib2 import URLError
 import webbrowser
+from argparse import ArgumentParser
 
 def build_config():
     """\
@@ -86,7 +88,44 @@ def flatten(lst):
 
 def main():
     
-    all_repos = filter(None, flatten(build_repo_tree()))
+    parser = ArgumentParser(description="DVDev: Distributed Versioned Development")
+    parser.add_argument(
+        'repositories', metavar='repository', type=str, nargs='*',
+        default=[os.getcwd()], help='List of repositories to serve. If left '\
+        'blank, DVDev will search the current and subdirectories for '\
+        'existing repositories.')
+    args = parser.parse_args()
+    for index, repository in enumerate(args.repositories):
+        if os.path.exists(repository):
+            continue
+        # Maybe this is a repository URL that mercurial recognizes?
+        myui = ui.ui()
+        myui.pushbuffer()
+
+        try:
+            commands.clone(myui, repository)
+        except RepoError:
+            print "Bad repository: %s" % repository
+            import sys
+            sys.exit(1)
+        except URLError:
+            print "Bad repository: %s" % repository
+            import sys
+            sys.exit(1)
+
+        destination = myui.popbuffer().split('\n')[0]
+        destination = destination.split('destination directory: ')[1]
+
+        if not os.path.exists(destination):
+            print "Successfully cloned repository %s but unable to read "\
+            "local copy at %s" % (repository, destination)
+            import sys
+            sys.exit(1)
+
+        # Update our repository list with the new local copy
+        args.repositories[index] = destination
+
+    all_repos = filter(None, flatten([build_repo_tree(repo) for repo in args.repositories]))
     print "All repositories: %r" % all_repos
     config = {
         'use': 'egg:DVDev',
