@@ -1,15 +1,29 @@
 Ticket Screencast
 =================
 
+Introduction and Disclaimer
+---------------------------
+
+Hello, everybody, my name is Douglas Mayle, and I'm here today to show you a
+demo of DVDev's ticketing system.  We'll be walking through several scenarios
+to give you an idea of what you can do already with DVDev. As a disclaimer, I'd
+like you to know that while I think that DVDev's ticketing sytem is already
+best in class, I'll be showing you a developer release, with no polish or
+graphic design.
+
 Scenario 1: Developer filing bug
 --------------------------------
 
 I'm using some open source software, and it has a bug, so I'll easy_install
 dvdev, and launch it for a repository that already has a ticket database.
-(Maybe we use a url so that it clones the repository for me?)  It autolaunches
+(We use a url so that it clones the repository for me)  It autolaunches
 my web browser (I'll leave it open with no windows so that it happens quickly)
-and add a ticket using the jQuery dialog system (need to implement that). While
-I'm there, I edit a file to add a stub (def something: pass)
+and add a ticket. While I'm there, I edit a file to add a stub (def something:
+pass)
+
+In my first scenario, I noticed a problem with blarg, which uses DVDev for
+ticketing, so I'd like to create a new issue.  First I'm going to install DVDev
+on my system, which requires that you already have the deve
 
 Scenario 2: Picking out my work
 -------------------------------
