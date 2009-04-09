@@ -86,6 +86,13 @@
   priority: low
   status: open
   title: Get help creating a repoze.what plugin for meritocracy
+6ca8ee094e17a76de2c7b23806b91c8614fe0b3a:
+  description: Create a Navbar that shows the docs directory filetree
+  estimate: 1 hour
+  group: 0.2 Crawling Crawfish
+  priority: high, normal, low
+  status: open
+  title: FileTree to Navbar
 77346645eace08324590f222708c4a37d082efa4:
   description: Currently, launching DVDev requires a manual config process.  Create
     a command line to make this easier.

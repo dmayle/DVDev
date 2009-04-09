@@ -1,0 +1,7 @@
+comment: Opening ticket
+description: Create a Navbar that shows the docs directory filetree
+estimate: 1 hour
+group: 0.2 Crawling Crawfish
+priority: high, normal, low
+status: open
+title: FileTree to Navbar
