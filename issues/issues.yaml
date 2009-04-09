@@ -96,11 +96,11 @@
 77346645eace08324590f222708c4a37d082efa4:
   description: Currently, launching DVDev requires a manual config process.  Create
     a command line to make this easier.
-  estimate: 3 Days
+  estimate: 2 Days
   group: 0.2 Crawling Crawfish
   priority: green, red, or black
   status: open
-  title: Add command line for launching DVDev
+  title: 'Command line: fix speed hack, add --reload'
 86f5632151da060b32852b52c0df7b8a02cb35d4:
   description: Give detailed docs on how to host this on dreamhost.  Also post this
     to dreamhost wiki.
@@ -115,7 +115,7 @@
   group: 0.2 Crawling Crawfish
   priority: normal
   status: open
-  title: Make adding ticket easier
+  title: Ticket add should use AJAX submit
 a36b42ed967e40d8dde931f12a66eae2d30f8c42:
   description: Give a lightning talk at Pycon about DVDev
   estimate: 3 Minutes

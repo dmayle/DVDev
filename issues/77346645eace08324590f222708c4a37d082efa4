@@ -3,8 +3,8 @@ comment: It was still too slow, had to make a speed hack (limiting repository na
   line niceties...
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
-estimate: 3 Days
+estimate: 2 Days
 group: 0.2 Crawling Crawfish
 priority: green, red, or black
 status: open
-title: Add command line for launching DVDev
+title: 'Command line: fix speed hack, add --reload'

@@ -4,4 +4,4 @@ estimate: 1 Hour
 group: 0.2 Crawling Crawfish
 priority: normal
 status: open
-title: Make adding ticket easier
+title: Ticket add should use AJAX submit
