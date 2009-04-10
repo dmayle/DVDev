@@ -14,39 +14,16 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# The minimum number of modules necessary for a reload monitor
 import os
 import sys
-from dvdev.config.middleware import make_app
-from paste.httpserver import serve
-from tempfile import NamedTemporaryFile
-from mercurial import hg, ui, util, commands
-from mercurial.error import RepoError
-from urllib2 import URLError
-import socket
-import webbrowser
-import subprocess
 import signal
-from threading import Timer
 from argparse import ArgumentParser
 
-def build_config():
-    """\
-    Build a temporary config file to pass to paster so the user doesn't need
-    to do this themselves. For the moment, this only works on Unix-like
-    systems."""
-    # Don't close this file, because it will disappear.  Instead, maybe we can
-    # reopen it in readonly mode???
-    config_tmp = NamedTemporaryFile()
-
-    # Do stuff
-    config_tmp.write('stuff')
-
-    # This little dance ensures that the data is available to other programs,
-    # thank you python docs (for the os module.)
-    config_tmp.flush()
-    os.fsync(config_tmp)
-
-    return config_tmp
+# We'll preload the mercurial modules to speed things up for the server
+# processes, even if it's not strictly necessary for the monitor.
+from mercurial import hg, ui, util, commands
+from mercurial.error import RepoError
 
 def build_repo_tree(root=os.getcwd(), maxdepth=2):
     """Build a tree structure that represents the loaded repositories."""
@@ -90,6 +67,19 @@ def flatten(lst):
         return output
     except TypeError:
         return [lst]
+
+def launch_and_watch_child(args):
+    if hasattr(os, 'fork'):
+        # Nice and easy...
+        child = os.fork()
+        if child == 0:
+            return
+        unused, exit_code = os.waitpid(child, 0)
+        return exit_code
+    from subprocess import Popen
+    child = Popen(args)
+    exit_code = child.wait()
+    return exit_code
 
 def main():
     
@@ -202,6 +192,7 @@ def main():
         myui = ui.ui()
         myui.pushbuffer()
 
+        from urllib2 import URLError
         try:
             commands.clone(myui, repository)
         except RepoError:
@@ -244,8 +235,10 @@ def main():
         'who.log_file': 'stdout',
         'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
+    from dvdev.config.middleware import make_app
     app = make_app({'debug': 'true'}, **config)
 
+    import webbrowser
     def webhelper(url):
         """\
         Curry the webbrowser.open method so that we can cancel it with a
@@ -262,8 +255,11 @@ def main():
     # second delay (forever in computer time) in another thread.  If the server
     # returns, we'll cancel the timer, and try again.
     if not args.nolaunch:
+        from threading import Timer
         safelaunch = Timer(0.5, webhelper('http://localhost:%d/' % args.port))
         safelaunch.start()
+    import socket
+    from paste.httpserver import serve
     try:
         serve(app, host='0.0.0.0', port=args.port)
     except socket.error, e:

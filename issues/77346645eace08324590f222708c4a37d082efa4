@@ -1,4 +1,4 @@
-comment: Speed hack is still there, but initial version of --reload is in...
+comment: Some cleanup and streamlining.
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 2 Days
