@@ -1,0 +1,6 @@
+comment: Opening ticket
+description: When the repo is dirty, all tickets related to uncommitted work should
+  be flagged visually
+estimate: 2 Hours
+status: open
+title: Related tickets for index

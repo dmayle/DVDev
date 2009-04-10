@@ -57,6 +57,13 @@
   priority: green, red, or black
   status: closed
   title: Clean up the html
+42e30d8658432508719e6906819a4c9940b99d78:
+  comment: Opening ticket
+  description: When the repo is dirty, all tickets related to uncommitted work should
+    be flagged visually
+  estimate: 2 Hours
+  status: open
+  title: Related tickets for index
 44da23e913408c1ae3f62afede51aef6493a9f7a:
   description: We need ticket groups to organize the work, to some day have a sense
     of completion
