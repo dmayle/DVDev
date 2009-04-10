@@ -1,6 +1,4 @@
-comment: It was still too slow, had to make a speed hack (limiting repository names,
-  no data or sstore).  Won't close it because I still need '--reload' and other command
-  line niceties...
+comment: Speed hack is still there, but initial version of --reload is in...
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 2 Days

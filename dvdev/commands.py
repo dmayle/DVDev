@@ -15,6 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 from dvdev.config.middleware import make_app
 from paste.httpserver import serve
 from tempfile import NamedTemporaryFile
@@ -23,6 +24,8 @@ from mercurial.error import RepoError
 from urllib2 import URLError
 import socket
 import webbrowser
+import subprocess
+import signal
 from threading import Timer
 from argparse import ArgumentParser
 
@@ -97,10 +100,101 @@ def main():
         'blank, DVDev will search the current and subdirectories for '\
         'existing repositories.')
     parser.add_argument(
+        '-d', '--debug', action='store_true', default=False, help='Start dvdev in '\
+        'debugging mode.  This causes dvdev to monitor it\'s own source '\
+        'files and reload if they have changed.  Normally, only DVDev '\
+        'developers will ever have need of this functionality.')
+    parser.add_argument(
+        '-f', '--fragile', action='store_true', default=False, help='Don\'t display '\
+        'this help.  When specified, start a thread that watches DVDev\'s '\
+        'source files.  If any change, then quit this process.')
+    parser.add_argument(
+        '-n', '--nolaunch', action='store_true', default=False, help='Don\'t launch '\
+        'a web browser after starting the http server.')
+    parser.add_argument(
         '-p', '--port', type=int, default=4000, help='The port to serve on '\
         '(by default: 4000).  If this port is in use, dvdev will try to '\
         'randomly select an open port.')
     args = parser.parse_args()
+
+    # We're gonna implement magic reload functionality, as seen in paster
+    # serve. (Thanks, Ian Bicking, for the code and the explanation of what to
+    # do.)
+
+    # When this command is called with --debug, it does no actual serving.  It
+    # opens a new process with a magic environment key that will tell DVDev to
+    # launch in 'fragile mode'.  This means that it will call
+    # paste.reload.install(), which starts a thread that kills the process if
+    # any of it's files change.
+
+    # Meanwhile, back at the ranch (this process) we'll watch to see if our
+    # subprocess dies and simply launch it again.  At the same time, we'll
+    # watch for a Ctrl-C so that the user can interrupt us (and by extension,
+    # the server.)
+
+    if args.debug:
+        import sys
+        pass_args = sys.argv
+
+        my_python = sys.executable
+        # On windows, we may have to fix this up if there is a space somewhere
+        # in the path.  I'm inclined to just escape the space, and hope that
+        # works.  PasteScript command uses win32api.GetShortPathName to find
+        # the FAT16 equivalent filename.  I hope we can avoid that mess.
+        if sys.platform == 'win32' and ' ' in my_python:
+            my_python = my_python.replace(' ', '\\ ')
+
+        # We don't want the server process to become a reload monitor.
+        if '--debug' in pass_args:
+            pass_args.remove('--debug')
+        if '-d' in pass_args:
+            pass_args.remove('-d')
+
+        # Setup the server process to quit out on any changes.
+        if '-f' not in pass_args and '--fragile' not in pass_args:
+            pass_args.append('--fragile')
+
+        call_server = [my_python] + pass_args
+
+        while True:
+            child = None
+            try:
+                try:
+                    print "Launching server process"
+                    child = subprocess.Popen(pass_args)
+                    exit_code = child.wait()
+
+                    # We only let nolaunch be False on the first subprocess launch.
+                    # After that, we never want to launch a webbrowser.
+                    if '-n' not in pass_args and '--nolaunch' not in pass_args:
+                        pass_args.append('--nolaunch')
+                except (SystemExit, KeyboardInterrupt):
+                    "^C Pressed, shutting down server"
+                    return
+            finally:
+                if child and hasattr(os, 'kill'):
+                    # Apparantly, windows will litter processes in the case of
+                    # catastrophic failure.
+                    try:
+                        os.kill(child.pid, signal.SIGTERM)
+                    except (OSError, IOError):
+                        pass
+            if exit_code != 3:
+                # The child exited non-normally, so we will too.
+                return exit_code
+
+
+    if args.fragile:
+        # This simple form does not work in jython, so I should fix that, since
+        # the code is already written into paste.serve
+        from paste import reloader
+        # Do we need to allow a way to slow this down?  Defaults to checking
+        # once per second.
+        reloader.install()
+        # If we ever add a config file, we need to add that to the watch list
+        # like this:
+        # reloader.watch_file(my_config_file)
+
     for index, repository in enumerate(args.repositories):
         if os.path.exists(repository):
             continue
@@ -167,8 +261,9 @@ def main():
     # sort of a chicken and egg problem.  We'll start a timer with a half
     # second delay (forever in computer time) in another thread.  If the server
     # returns, we'll cancel the timer, and try again.
-    safelaunch = Timer(0.5, webhelper('http://localhost:%d/' % args.port))
-    safelaunch.start()
+    if not args.nolaunch:
+        safelaunch = Timer(0.5, webhelper('http://localhost:%d/' % args.port))
+        safelaunch.start()
     try:
         serve(app, host='0.0.0.0', port=args.port)
     except socket.error, e:
