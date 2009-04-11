@@ -106,7 +106,7 @@
   estimate: 2 Days
   group: 0.2 Crawling Crawfish
   priority: green, red, or black
-  status: open
+  status: closed
   title: 'Command line: fix speed hack, add --reload'
 86f5632151da060b32852b52c0df7b8a02cb35d4:
   description: Give detailed docs on how to host this on dreamhost.  Also post this

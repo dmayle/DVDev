@@ -1,8 +1,8 @@
-comment: Some cleanup and streamlining.
+comment: 'Command line: replaces speed hack with optimization, cleaned up a bit'
 description: Currently, launching DVDev requires a manual config process.  Create
   a command line to make this easier.
 estimate: 2 Days
 group: 0.2 Crawling Crawfish
 priority: green, red, or black
-status: open
+status: closed
 title: 'Command line: fix speed hack, add --reload'
