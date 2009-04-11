@@ -12,6 +12,14 @@
   priority: high, medium, low
   status: closed
   title: Add burndown charts.
+0999f30fa54e761ee77c07b94a010d1e6e202c10:
+  description: At the command line, --init should initialize a repo, and if there's
+    no issue DB, the index should show a link for DB init
+  estimate: 1 Day
+  group: 0.2 Crawling Crawfish
+  priority: high, normal, low
+  status: open
+  title: Add support for repo and ticket db initialization
 106f89200b0d6cc25f93a22464e05031b95bd5c8:
   description: "Add per file revert buttons to the diff/commit page\r\nBetter yet,\
     \ checkboxes, and the ability to revert or commit just the checked files - Using\
@@ -58,10 +66,11 @@
   status: closed
   title: Clean up the html
 42e30d8658432508719e6906819a4c9940b99d78:
-  comment: Opening ticket
   description: When the repo is dirty, all tickets related to uncommitted work should
     be flagged visually
   estimate: 2 Hours
+  group: 0.2 Crawling Crawfish
+  priority: high, normal, low
   status: open
   title: Related tickets for index
 44da23e913408c1ae3f62afede51aef6493a9f7a:
