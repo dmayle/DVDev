@@ -135,8 +135,8 @@
         <li py:for="dbindex, repo in enumerate(c.issues)"><a href="#tabs-${repo}">${repo}</a></li>
       </ul>
       <div id="tabs-${repo}" class="dvdev repository" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
-        <a class="dvdev newticket" href="${url.current(repository=repo, action='new')}">New Issue</a>
         <py:if test="issuedb is not None">
+          <a class="dvdev newticket" href="${url.current(repository=repo, action='new')}">New Issue</a>
           <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
             <legend py:if="group"><a href="${url(repository=repo, controller='issues', action='burndown', id=group)}">${group}</a></legend>
             <ul class="dvdev issues">

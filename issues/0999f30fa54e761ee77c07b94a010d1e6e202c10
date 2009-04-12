@@ -1,4 +1,4 @@
-comment: Youpi! Repo AND issuedb initialization...
+comment: Hide the new ticket link for repositories without an issue database
 description: At the command line, --init should initialize a repo, and if there's
   no issue DB, the index should show a link for DB init
 estimate: 1 Day
