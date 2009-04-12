@@ -126,30 +126,44 @@ def _server_args(args, nolaunch=False):
 
 def main():
     parser = ArgumentParser(description="DVDev: Distributed Versioned Development")
+
     parser.add_argument(
         'repositories', metavar='repository', type=str, nargs='*',
-        default=[os.getcwd()], help='List of repositories to serve. If left '\
-        'blank, DVDev will search the current and subdirectories for '\
-        'existing repositories.')
+        default=[os.getcwd()],
+        help='List of repositories to serve. If left blank, DVDev will search '
+        'the current and subdirectories for existing repositories.')
+
     parser.add_argument(
-        '-d', '--debug', action='store_true', default=False, help='Start dvdev in '\
-        'debugging mode.  This causes dvdev to monitor it\'s own source '\
-        'files and reload if they have changed.  Normally, only DVDev '\
-        'developers will ever have need of this functionality.')
+        '-d', '--debug', action='store_true', default=False,
+        help='Start dvdev in debugging mode.  This causes dvdev to monitor '
+        'it\'s own source files and reload if they have changed.  Normally, '
+        'only DVDev developers will ever have need of this functionality.')
+
     parser.add_argument(
-        '-f', '--fragile', action='store_true', default=False, help='Don\'t display '\
-        'this help.  When specified, start a thread that watches DVDev\'s '\
-        'source files.  If any change, then quit this process.')
+        '-f', '--fragile', action='store_true', default=False,
+        help='INTERNAL USE ONLY.  When specified, start a thread that watches '
+        'DVDev\'s source files.  If any change, then quit this process.')
+
     parser.add_argument(
-        '-n', '--nolaunch', action='store_true', default=False, help='Don\'t launch '\
-        'a web browser after starting the http server.')
+        '-c', '--create', action='store_true', default=False,
+        help='For any directories passed in on the command line (or the '
+        'current directory, if none), initialize them as a repository if they '
+        'do not already contain one.')
+
     parser.add_argument(
-        '-p', '--port', type=int, default=4000, help='The port to serve on '\
-        '(by default: 4000).  If this port is in use, dvdev will try to '\
-        'randomly select an open port.')
+        '-n', '--nolaunch', action='store_true', default=False,
+        help='Don\'t launch a web browser after starting the http server.')
+
     parser.add_argument(
-        '-i', '--ip', default='0.0.0.0', help='The IP address to listen on. '\
-        'Defaults to 0.0.0.0, which means all IPv4 addresses')
+        '-p', '--port', type=int, default=4000,
+        help='The port to serve on (by default: 4000).  If this port is in '
+        'use, dvdev will try to randomly select an open port.')
+
+    parser.add_argument(
+        '-i', '--ip', default='0.0.0.0',
+        help='The IP address to listen on. Defaults to 0.0.0.0, which means '
+        'all IPv4 addresses')
+
     args = parser.parse_args()
 
     # We're gonna implement magic reload functionality, as seen in paster
@@ -157,10 +171,9 @@ def main():
     # do.)
 
     # When this command is called with --debug, it does no actual serving.  It
-    # opens a new process with a magic environment key that will tell DVDev to
-    # launch in 'fragile mode'.  This means that it will call
-    # paste.reload.install(), which starts a thread that kills the process if
-    # any of it's files change.
+    # opens a new process with a special flag that will tell DVDev to launch in
+    # 'fragile mode'.  This means that it will call paste.reload.install(),
+    # which starts a thread that kills the process if any of it's files change.
 
     # Meanwhile, back at the ranch (this process) we'll watch to see if our
     # subprocess dies and simply launch it again.  At the same time, we'll
@@ -220,6 +233,16 @@ def main():
         try:
             commands.clone(myui, repository)
         except (RepoError, URLError):
+            if args.create:
+                try:
+                    os.makedirs(repository)
+                    try:
+                        commands.init(myui, repository)
+                        continue
+                    except:
+                        os.unlink(repository)
+                except IOError:
+                    pass
             print "Bad repository: %s" % repository
             import sys
             sys.exit(1)
@@ -237,7 +260,18 @@ def main():
         # Update our repository list with the new local copy
         args.repositories[index] = destination
 
-    all_repos = filter(None, flatten([build_repo_tree(repo) for repo in args.repositories]))
+    if args.create:
+        all_repos = []
+        for repo in args.repositories:
+            found_repos = flatten(build_repo_tree(repo))
+            if not found_repos:
+                # Initialize
+                myui = ui.ui()
+                commands.init(myui, repo)
+            else:
+                all_repos += found_repos
+    else:
+        all_repos = filter(None, flatten([build_repo_tree(repo) for repo in args.repositories]))
     print "All repositories: %r" % all_repos
     config = {
         'use': 'egg:DVDev',
@@ -256,7 +290,7 @@ def main():
         'workspace': os.path.join(os.getcwd(), 'workspace'),
     }
     from dvdev.config.middleware import make_app
-    app = make_app({'debug': 'true'}, **config)
+    app = make_app({'debug':(args.debug or args.fragile) and 'true' or 'false'}, **config)
 
     import webbrowser
     def webhelper(url):

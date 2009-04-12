@@ -18,7 +18,7 @@
   estimate: 1 Day
   group: 0.2 Crawling Crawfish
   priority: high, normal, low
-  status: open
+  status: closed
   title: Add support for repo and ticket db initialization
 106f89200b0d6cc25f93a22464e05031b95bd5c8:
   description: "Add per file revert buttons to the diff/commit page\r\nBetter yet,\

@@ -1,8 +1,8 @@
-comment: Opening ticket
+comment: Youpi! Repo AND issuedb initialization...
 description: At the command line, --init should initialize a repo, and if there's
   no issue DB, the index should show a link for DB init
 estimate: 1 Day
 group: 0.2 Crawling Crawfish
 priority: high, normal, low
-status: open
+status: closed
 title: Add support for repo and ticket db initialization

@@ -45,12 +45,16 @@ class IssuesController(BaseController):
         # I think YAMLTrak should be a package, not a webapp...
         allissues = yamltrak.issues(repositories.values(), 'issues')
         c.issues = {}
-        for repo, issuedb in allissues.iteritems():
+        for repo in repositories:
             c.issues[repo] = {}
+            issuedb = allissues.get(repo, {})
             for issueid, issue in issuedb.iteritems():
                 group = issue.get('group', 'unfiled')
                 c.issues[repo][group] = c.issues[repo].get(group, {})
                 c.issues[repo][group][issueid] = issue
+            if repo not in allissues:
+                c.issues[repo] = None
+                
         return render('issues/index.html')
 
     def create(self, repository):
@@ -127,6 +131,14 @@ class IssuesController(BaseController):
         c.uncommitted_diff = issue[0].get('diff')
         c.versions = issue[1:]
         return render('issues/issue.html')
+
+    def initialize(self, repository, format='html'):
+        """GET /issues/id/edit: Form to edit an existing item"""
+
+        url = request.environ['routes.url']
+
+        yamltrak.init(repository)
+        return redirect(url(controller='issues', repository=repository, action='index'))
 
     @rest.dispatch_on(GET='show')
     def edit(self, repository, id, format='html'):

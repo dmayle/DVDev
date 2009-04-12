@@ -136,14 +136,19 @@
       </ul>
       <div id="tabs-${repo}" class="dvdev repository" py:for="dbindex, (repo, issuedb) in enumerate(c.issues.iteritems())">
         <a class="dvdev newticket" href="${url.current(repository=repo, action='new')}">New Issue</a>
-        <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
-          <legend py:if="group"><a href="${url(repository=repo, controller='issues', action='burndown', id=group)}">${group}</a></legend>
-          <ul class="dvdev issues">
-            <py:for each="issueid, issue in issues.iteritems()">
-              <li id="${issueid}" class="${issue.get('estimate',{}).get('scale')} ${issue.get('priority', 'high')}"><a href="${url.current(repository=repo, action='show',id=issueid)}">${issueid[:12]}</a><p>${issue.get('title')}</p><p class="dvdev estimate">${issue.get('estimate',{}).get('text')}</p></li>
-            </py:for>
-          </ul>
-        </fieldset>
+        <py:if test="issuedb is not None">
+          <fieldset class="dvdev group" py:for="group, issues in issuedb.iteritems()">
+            <legend py:if="group"><a href="${url(repository=repo, controller='issues', action='burndown', id=group)}">${group}</a></legend>
+            <ul class="dvdev issues">
+              <py:for each="issueid, issue in issues.iteritems()">
+                <li id="${issueid}" class="${issue.get('estimate',{}).get('scale')} ${issue.get('priority', 'high')}"><a href="${url.current(repository=repo, action='show',id=issueid)}">${issueid[:12]}</a><p>${issue.get('title')}</p><p class="dvdev estimate">${issue.get('estimate',{}).get('text')}</p></li>
+              </py:for>
+            </ul>
+          </fieldset>
+        </py:if>
+        <div class="dvdev group" py:if="issuedb is None">
+          <a href="${url(repository=repo, controller='issues', action='initialize')}">Initialize Issue Database</a>
+        </div>
       </div>
     </div>
     <div class="dvdev toolset">
