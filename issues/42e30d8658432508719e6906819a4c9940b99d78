@@ -1,8 +1,8 @@
-comment: Opening ticket
+comment: Need a visual indicator that's not too obtrusive...
 description: When the repo is dirty, all tickets related to uncommitted work should
   be flagged visually
 estimate: 2 Hours
 group: 0.2 Crawling Crawfish
-priority: high, normal, low
+priority: normal
 status: open
 title: Related tickets for index

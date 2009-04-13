@@ -70,7 +70,7 @@
     be flagged visually
   estimate: 2 Hours
   group: 0.2 Crawling Crawfish
-  priority: high, normal, low
+  priority: normal
   status: open
   title: Related tickets for index
 44da23e913408c1ae3f62afede51aef6493a9f7a:
