@@ -29,7 +29,12 @@
     <script language="javascript" type="text/javascript" src="/js/jquery.flot.pack.js"></script>
     <script type="text/javascript">
       $(function(){
-        $.plot($('#burndownchart'), ${'%r' % [c.groupdata]}, { xaxis: { mode: "time" } });
+        $.plot($('#burndownchart'), ${'[{ label: "Hours of work", color: "#f00", data: %r}]' % c.groupdata}, {
+          xaxis: { mode: "time" },
+          selection: {
+            mode: 'x',
+          }
+        });
       });
     </script>
   </head>
