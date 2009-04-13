@@ -23,7 +23,13 @@ pass)
 
 In my first scenario, I noticed a problem with blarg, which uses DVDev for
 ticketing, so I'd like to create a new issue.  First I'm going to install DVDev
-on my system, which requires that you already have the deve
+on my system.  If you're trying to follow the demo on a Mac, then be sure to
+install the Developer Tools. On Ubuntu, you need to make sure that you have the
+python development package.
+
+As you can see, I just type `sudo easy_install DVDev`, which fetches all of the
+required dependencies.  Now that I have DVDev installed, I'll launch it for the
+project.  I've got a demo repository served locally, so I'll just use that. 
 
 Scenario 2: Picking out my work
 -------------------------------
