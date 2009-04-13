@@ -88,7 +88,7 @@ class IssuesController(BaseController):
         issue['title'] = request.params.get('title')
         issue['description'] = request.params.get('description')
         issue['estimate'] = request.params.get('estimate')
-        if not issue['title'] or not issue['description'] or not issue['estimate']:
+        if not issue['title'] or not issue['description'] or not 'estimate' in request.params:
             c.issue = issue
             return render('issues/add.html')
         issueid = yamltrak.add(repositories[repository], issue)
