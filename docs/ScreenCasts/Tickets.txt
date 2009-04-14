@@ -21,15 +21,22 @@ my web browser (I'll leave it open with no windows so that it happens quickly)
 and add a ticket. While I'm there, I edit a file to add a stub (def something:
 pass)
 
-In my first scenario, I noticed a problem with blarg, which uses DVDev for
-ticketing, so I'd like to create a new issue.  First I'm going to install DVDev
-on my system.  If you're trying to follow the demo on a Mac, then be sure to
+I'd like to show you my new open source packege TravelTheWorld.  It's a great
+package, but I've already noticed a few problems.  Let's check out the software
+and see what we can do to make it better.  First I'm going to install DVDev on
+my system.  If you're trying to follow the demo on a Mac, then be sure to
 install the Developer Tools. On Ubuntu, you need to make sure that you have the
 python development package.
 
 As you can see, I just type `sudo easy_install DVDev`, which fetches all of the
 required dependencies.  Now that I have DVDev installed, I'll launch it for the
-project.  I've got a demo repository served locally, so I'll just use that. 
+project.  TravelTheWorld the world is being served locally, so let's connect to
+that.
+
+Ahh, there is is.  Right away, I see a problem.  There's no flight info for
+France.  I'll just file a ticket to let the developers know.  And while I'm at
+it, I'll create the document where the flight info belongs, and check that in.
+This shouldn't take more than 5 minutes.
 
 Scenario 2: Picking out my work
 -------------------------------
@@ -38,6 +45,12 @@ I'm starting my work for the day, so I navigate to my repository, and get an
 immediate view of the work to do.  I have a 3 Day high priority ticket, and a 1
 Hour normal priority ticket.  Since I only have a short time to work, I'll
 decide to start the lower priority ticket. (I pick out the ticket from scenario 1).
+
+Now let's take a look at this from the developer's point of view.  I'm working
+on TravelTheWorld, and so I want to see what kind of work is available.  Well,
+Italy looks like it has a lot of heavy work involved.  I've only got a few
+minutes available to work today.  I notice in France that there's a quick, high
+priority issue that I can deal with.  That's perfect, I'll start with that.
 
 Scenario 3: Fixing an open ticket
 ---------------------------------
@@ -48,6 +61,11 @@ I edit this file to provide the implementation.  I've just finished the
 changes, so I go to my Diff/Commit Screen and check out the changes.  I've only
 changed one file, so I'm presented with the associated ticket.  I update the
 comments, click on close, and commit my changes.
+
+Now that I have an idea of what I need to do, I'd like to take a more detailed
+look at the issue.  Before we can Visit France, we need the flight information.
+Let's look at the ticket.  Here I can see that the flight information belongs
+in this doc file.  I'll fire up my editor and input the flight data.
 
 Scenario 4: Planning a release
 ------------------------------
@@ -67,3 +85,15 @@ Highlight:
  * Related tickets
  * Detailed ticket view
  * Not needing to link the tickets with text.
+
+
+Ticket Database for Travel
+  Visit Greece - Unplanned
+  Climb Eiffel Tower
+  Visit Nice
+  Add a Doc that has the title 'flight information'.
+  Check in that doc with the ticket.
+  Add the flight number and use related tickets to find where it belongs.
+  Visit Ireland: Kiss beautiful lassie -> edit to Kiss Blarney Stone. Exposed
+      in history view.  This is why the ireland trip is taking so long.  The
+      estimate is way out of wack.
