@@ -38,6 +38,8 @@ setup(
         "docutils",
         "yamltrak",
         "Meritocracy",
+        "Mercurial>=1.2",
+        "argparse",
         "filesafe",
     ],
     setup_requires=["PasteScript>=1.6.3"],
