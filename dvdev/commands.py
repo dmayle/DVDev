@@ -310,7 +310,7 @@ def main():
     # returns, we'll cancel the timer, and try again.
     if not args.nolaunch:
         from threading import Timer
-        safelaunch = Timer(0.5, webhelper('http://%s:%d/' % (args.ip, args.port)))
+        safelaunch = Timer(0.7, webhelper('http://%s:%d/' % (args.ip, args.port)))
         safelaunch.start()
 
     import socket
