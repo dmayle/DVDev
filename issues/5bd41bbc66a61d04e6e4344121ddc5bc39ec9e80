@@ -1,0 +1,9 @@
+comment: The current comment on this ticket.
+description: Running an hg clone against a running DVDev instance triggers a stack
+  trace in repoze.who.  I suspect it is simply a problem with configuring mercurial
+  and cloning...
+estimate: 3 Hours
+group: 0.2 Crawling Crawfish
+priority: high, normal, low
+status: open
+title: Unable to clone embedded repo
