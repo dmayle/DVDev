@@ -1,0 +1,9 @@
+comment: Moving over from YAMLTrak
+description: Try implementing a drop target that will temporarily hold tickets until
+  they can be moved elsewhere
+estimate: 1 Day
+group: 0.2 Crawling Crawfish
+priority: high, normal, low
+status: open
+title: In large ticket databases, dragging is impractical, we need the groups to show
+  up as tools
