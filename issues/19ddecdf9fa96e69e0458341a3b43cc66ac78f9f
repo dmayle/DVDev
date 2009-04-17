@@ -1,4 +1,4 @@
-comment: Opening ticket
+comment: Google research seems to indicate that this is cause by the revert commands
 description: DVDev is littering .orig files, I suspect it has to do with the diffs...  Remove
   them
 estimate: 1 Hour
