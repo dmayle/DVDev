@@ -109,7 +109,7 @@
   estimate: 3 Hours
   group: 0.2 Crawling Crawfish
   priority: high, normal, low
-  status: open
+  status: closed
   title: Unable to clone embedded repo
 6ca8ee094e17a76de2c7b23806b91c8614fe0b3a:
   description: Create a Navbar that shows the docs directory filetree

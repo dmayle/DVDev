@@ -43,5 +43,6 @@ class MercurialgatewayController(BaseController):
 
     def __call__(self, environ, start_response):
         application = hgwebdir(repositories, parentui)
-        return application(environ, start_response)
+        output = application(environ, start_response)
+        return ''.join([x for x in output])
 
