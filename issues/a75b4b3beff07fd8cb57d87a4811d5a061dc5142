@@ -1,0 +1,8 @@
+comment: Opening issue
+description: As tickets age, their priority should increase (optionally?) and with
+  some indicator that the priority increase is time.
+estimate: 1 Days
+group: 0.2 Crawling Crawfish
+priority: normal
+status: open
+title: Time should increase priority
