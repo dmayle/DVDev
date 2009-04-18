@@ -175,6 +175,13 @@ c149d4f9dbffe413bcc39cab14d51522ffa69ab0:
   estimate: 5 minutes
   status: closed
   title: Commit screen doesn't handle repos without issues
+c2b0269025d3d014f851e8964bcce0be17d5b012:
+  description: 'Check out this link for good wiki ideas: [http://www.openplans.org/projects/topp-engineering/blog/2009/02/24/easier-wiki-cleanup/]'
+  estimate: ''
+  group: unfiled
+  priority: high, normal, low
+  status: open
+  title: Some good wiki ideas
 c8b6847dd22c8bcc1d660305293ed8f6f2e15da0:
   description: Try implementing a drop target that will temporarily hold tickets until
     they can be moved elsewhere
