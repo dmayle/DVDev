@@ -1,0 +1,8 @@
+comment: Opening issue
+description: The diff screen should offer up a list of the issue comments on modified
+  tickets so that you can one-click put in your commit comment
+estimate: 1 Day
+group: 0.2 Crawling Crawfish
+priority: normal
+status: open
+title: Diff screen uses issue comments for commit message

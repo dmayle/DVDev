@@ -221,6 +221,14 @@ edd0cb85f939a59bcba5cdb36668bd440daf3d1d:
   priority: high, medium, low
   status: closed
   title: Javascript updating assumes repository
+f4bf7a2f6d8c1d39ac4900439438b37bb232e597:
+  description: The diff screen should offer up a list of the issue comments on modified
+    tickets so that you can one-click put in your commit comment
+  estimate: 1 Day
+  group: 0.2 Crawling Crawfish
+  priority: normal
+  status: open
+  title: Diff screen uses issue comments for commit message
 fdfdb279554b954ab77c22c85d1bb78d527bce4a:
   description: When you pass a URL as an argument to dvdev, it should clone the repository
     and then start up
