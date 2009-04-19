@@ -93,7 +93,7 @@ class IssuesController(BaseController):
         if not issue['title'] or not issue['description'] or not 'estimate' in request.params:
             c.issue = issue
             return render('issues/add.html')
-        issueid = yamltrak.add(repositories[repository], issue)
+        issueid = yamltrak.new(repositories[repository], issue)
         url = request.environ['routes.url']
         redirect(url.current(repository=repository, id=issueid, action='show'))
 
@@ -139,7 +139,7 @@ class IssuesController(BaseController):
 
         url = request.environ['routes.url']
 
-        yamltrak.init(repository)
+        yamltrak.dbinit(repository)
         return redirect(url(controller='issues', repository=repository, action='index'))
 
     @rest.dispatch_on(GET='show')
